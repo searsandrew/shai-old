@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Donee;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -20,9 +21,9 @@ class DoneeTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function donee_index()
+    public function test_donee_list_is_generated()
     {
         $donee = Donee::all();
-        $donee->assertIsObject(null);
+        $this->assertIsObject($donee);
     }
 }
