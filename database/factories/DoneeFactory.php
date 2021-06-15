@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Donee;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class DoneeFactory extends Factory
 {
@@ -21,10 +22,12 @@ class DoneeFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->name();
+
         return [
-            'name' => $this->faker->name(),
-            'age' => $this->faker->randomDigit(),
-            'details' => '[{"wishlist": [{"id": 0,"name": "Suzette Hutchinson"},{"id": 1,"name": "Kimberley Sheppard"},{"id": 2,"name": "Rodriquez Wilson"}]}]'
+            'name' => $name,
+            'description' => $this->faker->sentence(),
+            'slug' => Str::slug($name . '-' . Str::random(8), '-'),
         ];
     }
 }

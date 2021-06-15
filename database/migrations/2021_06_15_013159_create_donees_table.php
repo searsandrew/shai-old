@@ -15,11 +15,9 @@ class CreateDoneesTable extends Migration
     {
         Schema::create('donees', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('slug')->unique();
             $table->string('name');
-            $table->integer('age');
-            $table->json('details');
+            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
         });

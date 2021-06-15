@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Donee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DoneeController extends Controller
 {
@@ -42,12 +43,14 @@ class DoneeController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
-            'age' => 'required',
+            'description' => 'required',
         ]);
 
-        $donee = Donee::create($request);
+        $validated['slug'] = Str::slug($validated['name'] . '-' . Str::random(8), '-');
 
-        return redirect(route('donee.show', $donee))->with('success', sprintf('%s has been added.', $request->name));
+        $donee = Donee::create($validated);
+
+        return redirect(route('donee.show', $donee))->with('success', sprintf('%s has been added.', $validated->name));
     }
 
     /**

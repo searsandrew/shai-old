@@ -10,7 +10,17 @@ class Donee extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $fillable = ['name', 'age', 'details'];
+    public $fillable = ['name', 'description', 'slug'];
+
+    /**
+     * Set the route key name to slug
+     * 
+     * @return string
+     */
+    public function getRouteKeyName() : string
+    {
+        return 'slug';
+    }
 
     /**
      * User who selected donee
