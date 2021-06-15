@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\DoneeController;
+use App\Http\Controllers\DoneeController;
 use Illuminate\Support\Facades\Route;
 
 /*

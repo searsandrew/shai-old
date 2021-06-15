@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Donee;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +11,8 @@ use Tests\TestCase;
 
 class DoneeTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -34,6 +37,11 @@ class DoneeTest extends TestCase
             return $this->markTestSkipped('Donee creation not enabled.');
         }
 
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->get('/');
+
         $response = $this->get(route('donee.create'));
 
         $response->assertStatus(200);
@@ -45,7 +53,13 @@ class DoneeTest extends TestCase
             return $this->markTestSkipped('Donee showing not enabled.');
         }
 
-        $response = $this->get(route('donee.show'));
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->get('/');
+
+        $donee = Donee::factory()->create();
+        $response = $this->get(route('donee.show', $donee));
 
         $response->assertStatus(200);
     }
@@ -56,7 +70,13 @@ class DoneeTest extends TestCase
             return $this->markTestSkipped('Donee editing not enabled.');
         }
 
-        $response = $this->get(route('donee.edit'));
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->get('/');
+
+        $donee = Donee::factory()->create();
+        $response = $this->get(route('donee.edit', $donee));
 
         $response->assertStatus(200);
     }

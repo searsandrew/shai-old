@@ -58,7 +58,7 @@ class DoneeController extends Controller
      */
     public function show(Donee $donee) : \Illuminate\View\View
     {
-        return view('donee.show', $donee);
+        return view('donee.show', compact('donee'));
     }
 
     /**
@@ -71,7 +71,7 @@ class DoneeController extends Controller
     {
         $this->authorize('donee_edit');
 
-        return view('donee.edit', $donee);
+        return view('donee.edit', compact('donee'));
     }
 
     /**
