@@ -8,10 +8,11 @@
 Shai is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 **Packages**
-* laravel/framework: 8.*
-* laravel/jetstream: 2.*
-* livewire/livewire: 2.*
-* spatie/laravel-tags: 2.6
+* laravel/framework: ^8.40
+* laravel/jetstream: ^2.3
+* livewire/livewire: ^2.0
+* spatie/laravel-tags: ^3.1
+* owen-it/laravel-auditing: ^12.0
 
 **Features**
 * User Permissions, with User assignment controls.
@@ -20,6 +21,7 @@ Shai is open-sourced software licensed under the [MIT license](https://opensourc
 * Donee CRUD for inputting and listing Donee's.
 * Donor (User) linking for multiple Donee's.
 * Grouping Donee's into family groups.
+* Auditing tools to keep track of changes.
 
 **Package Released**
 
