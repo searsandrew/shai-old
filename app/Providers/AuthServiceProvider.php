@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define( 'donee_edit', function(User $user) { return true; });
+        Gate::define( 'donee_create', function(User $user) { return $user->id; });
     }
 }

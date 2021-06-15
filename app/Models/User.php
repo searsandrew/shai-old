@@ -58,4 +58,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the Donee's chosen by the user
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function donees() : \Illuminate\Database\Eloquent\Relations\hasMany
+    {
+        return $this->hasMany(Donee::class);
+    }
 }
