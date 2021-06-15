@@ -90,12 +90,12 @@ class DoneeController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
-            'age' => 'required',
+            'description' => 'required',
         ]);
 
-        $donee->update($request);
+        $donee->update($validated);
 
-        return redirect(route('donee.show', $donee))->with('success', sprintf('%s has been updated', $donee->name));
+        return redirect(route('donee.show', $donee))->with('success', sprintf('%s has been updated', $validated->name));
     }
 
     /**
