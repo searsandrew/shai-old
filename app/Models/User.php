@@ -62,10 +62,10 @@ class User extends Authenticatable
     /**
      * Get the Donee's chosen by the user
      * 
-     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function donees() : \Illuminate\Database\Eloquent\Relations\hasMany
+    public function donees() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->hasMany(Donee::class);
+        return $this->belongsToMany(Donee::class);
     }
 }

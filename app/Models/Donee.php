@@ -28,10 +28,10 @@ class Donee extends Model implements AuditableContract
     /**
      * User who selected donee
      * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function user() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 }
