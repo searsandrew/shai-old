@@ -36,6 +36,9 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+                <div class="text-center text-xs text-gray-500 pb-6">
+                    Copyright &copy;{{ now()->year }} {{ config('app.name') }} • <a href="{{ route('terms.show') }}">Terms & Conditions</a> • <a href="{{ route('policy.show') }}">Privacy Policy</a> • Shai {{ config('shai.version') }}
+                </div>
             </main>
         </div>
 

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Campaign;
+use App\Models\Family;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,5 +35,25 @@ class Donee extends Model implements AuditableContract
     public function users() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * A donee belongs to many campaigns
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function campaigns() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Campaign::class);
+    }
+
+    /**
+     * A donee may belong to many families
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function families() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Family::class);
     }
 }
