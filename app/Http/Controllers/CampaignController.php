@@ -32,11 +32,23 @@ class CampaignController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request) : \Illuminate\Http\RedirectResponse
     {
-        //
+        $this->authorize('donee_create');
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'design' => 'required',
+            'started_at' => 'required',
+            'ended_at' => 'required',
+        ]);
+
+        $donee = Campaign::create($validated);
+
+        return redirect(route('campaign.show', $donee))->with('success', sprintf('%s has been added.', $validated->name));
     }
 
     /**

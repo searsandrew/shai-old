@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDoneeUserTable extends Migration
+class CreateUserWishlistTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateDoneeUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('donee_user', function (Blueprint $table) {
-            $table->bigInteger('donee_id')->unsigned();
-            $table->foreign('donee_id')->references('id')->on('donees');
+        Schema::create('user_wishlist', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('wishlist_id')->unsigned();
+            $table->foreign('wishlist_id')->references('id')->on('wishlists');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateDoneeUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('donee_user');
+        Schema::dropIfExists('user_wishlist');
     }
 }

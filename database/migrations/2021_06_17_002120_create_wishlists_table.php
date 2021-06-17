@@ -17,8 +17,10 @@ class CreateWishlistsTable extends Migration
             $table->id();
             $table->bigInteger('donee_id')->unsigned();
             $table->foreign('donee_id')->references('id')->on('donees');
+            $table->bigInteger('campaign_id')->unsigned();
+            $table->foreign('campaign_id')->references('id')->on('campaigns');
             $table->text('wishlist');
-            $table->enum('stauts', ['unfilled', 'filled', 'completed', 'retracted'])->default('unfilled');
+            $table->enum('status', ['unfilled', 'filled', 'completed', 'retracted'])->default('unfilled');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Wishlist;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,12 +61,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the Donee's chosen by the user
+     * Get the Wishlist's chosen by the user
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function donees() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function wishlists() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Donee::class);
+        return $this->belongsToMany(Wishlist::class);
     }
 }

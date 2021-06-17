@@ -12,6 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link href="{{ asset('css/shai.css') }}" rel="stylesheet">
 
         @livewireStyles
 

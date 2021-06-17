@@ -6,6 +6,8 @@ use App\Models\Donee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+use Auth;
+
 class DoneeController extends Controller
 {
     /**
@@ -15,8 +17,10 @@ class DoneeController extends Controller
      */
     public function index() : \Illuminate\View\View
     {
-        $donees = Donee::all();
-        return view('donee.index', compact('donees'));
+        $campaigns = Auth::user()->wishlists->groupBy('campaign_id');
+        // $donees = $donees->groupBy('campaign_id');
+        // dd($donees);
+        return view('donee.index', compact('campaigns'));
     }
 
     /**
@@ -45,8 +49,6 @@ class DoneeController extends Controller
             'name' => 'required',
             'description' => 'required',
         ]);
-
-        $validated['slug'] = Str::slug($validated['name'] . '-' . Str::random(8), '-');
 
         $donee = Donee::create($validated);
 

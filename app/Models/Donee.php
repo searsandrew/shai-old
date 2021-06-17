@@ -4,9 +4,11 @@ namespace App\Models;
 
 use App\Models\Campaign;
 use App\Models\Family;
+use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Spatie\Tags\HasTags;
@@ -15,7 +17,16 @@ class Donee extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, HasTags, Auditable;
 
-    public $fillable = ['name', 'description', 'slug'];
+    public $fillable = ['name', 'description'];
+
+    protected $attributes = [
+        'slug' => 'name',
+    ];
+
+    public function setSlugAttribute($value)
+    {
+        $this->attributes['slug'] = Str::slug($this->name . '-' . Str::random(8), '-');
+    }
 
     /**
      * Set the route key name to slug
@@ -25,16 +36,6 @@ class Donee extends Model implements AuditableContract
     public function getRouteKeyName() : string
     {
         return 'slug';
-    }
-
-    /**
-     * User who selected donee
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function users() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany(User::class);
     }
 
     /**
@@ -55,5 +56,15 @@ class Donee extends Model implements AuditableContract
     public function families() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Family::class);
+    }
+
+    /**
+     * A donee may have many wishlists
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function wishlists() : \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Wishlist::class);
     }
 }

@@ -31,11 +31,20 @@ class WishlistController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Model\Donee $donee
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Donee $donee)
     {
-        //
+        $this->authorize('donee_create');
+
+        $validated = $request->validate([
+            'wishlist' => 'required',
+        ]);
+
+        $donee->wishlists->create($validated);
+
+        return redirect(route('donee.show', $donee))->with('success', sprintf('A wishlist has been added for %s.', $donee->name));
     }
 
     /**
