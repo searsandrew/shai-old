@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('donee.index') }}" :active="request()->routeIs('donee.index')">
-                        {{ __('Donee\'s') }}
+                        {{ __('Donee') }}
                     </x-jet-nav-link>
                 </div>
             </div>
