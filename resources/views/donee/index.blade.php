@@ -16,11 +16,9 @@
                 @foreach($campaigns as $wishlists)
                     <h3 class="w-full flex-none font-semibold">{{ $wishlists->first()->campaign->name }}</h3>
                     <p class="w-full flex-none text-gray-700 text-xs italic mb-2">{{ $wishlists->first()->campaign->description }}</p>
-                    <div class="flex flex-col md:flex-row space-x-4 mb-5 pb-8 border-b border-gray-300">
+                    <div class="flex flex-col w-full md:flex-row space-x-4 mb-5 pb-8 border-b border-gray-300">
                         @foreach($wishlists as $donee)
-                            <x-donee-card :donee="$donee->donee" :status="$donee->status" :image="$wishlists->first()->campaign->design->image">
-                                {{ $donee->wishlist }}
-                            </x-donee-card>
+                            <livewire:donee-card :wishlist="$donee" :image="$wishlists->first()->campaign->design->image" />
                         @endforeach
                     </div>
                 @endforeach

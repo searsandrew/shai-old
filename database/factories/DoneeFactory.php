@@ -28,6 +28,8 @@ class DoneeFactory extends Factory
             'name' => $name,
             'description' => $this->faker->sentence(),
             'slug' => Str::slug($name . '-' . Str::random(8), '-'),
+            'age' => $this->faker->randomDigitNotNull(),
+            'gender' => $this->faker->randomElement(['male', 'male', 'female', 'female', 'transgender', 'undeclared']),
         ];
     }
 }

@@ -18,6 +18,8 @@ class CreateDoneesTable extends Migration
             $table->string('slug')->unique();
             $table->string('name');
             $table->text('description');
+            $table->integer('age')->unsigned();
+            $table->enum('gender', ['male', 'female', 'transgender', 'undeclared']);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -30,7 +30,6 @@ class EditDonee extends Component
 
         foreach($this->wishlists as $wishlist)
         {
-            // dd($wishlist);
             $wishlist->save();
             $this->emit('savedWishlist');
         }

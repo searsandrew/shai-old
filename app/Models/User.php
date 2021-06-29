@@ -63,10 +63,10 @@ class User extends Authenticatable
     /**
      * Get the Wishlist's chosen by the user
      * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function wishlists() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function wishlists() : \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(Wishlist::class);
+        return $this->hasMany(Wishlist::class);
     }
 }
