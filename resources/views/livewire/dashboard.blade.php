@@ -1,0 +1,22 @@
+<div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-auto flex flex-wrap">
+            @if($campaigns->count() != 0)
+                @foreach($campaigns as $campaign)
+                    <h3 class="w-full flex-none font-semibold">{{ $campaign->name }}</h3>
+                    <p class="w-full flex-none text-gray-700 text-xs italic mb-2">{{ $campaign->description }}</p>
+                        <div class="flex flex-col w-full md:flex-row space-x-4 mb-5 pb-8 border-b border-gray-300">
+                            @foreach($campaign->wishlists as $wishlist)
+                                <livewire:donee-card :wishlist="$wishlist" :image="$campaign->design->image" />
+                            @endforeach
+                        </div>
+                @endforeach
+            @else
+                <div class="p-1 md:px-40 lg:px-96 md:py-3">
+                    <x-no-donee />
+                    <p class="text-center text-gray-500 mt-3">{{ __('You haven\'t selected any current Donee\'s.') }}</p>
+                </div>
+            @endif     
+        </div>
+    </div>
+</div>

@@ -22,6 +22,7 @@ Shai is open-sourced software licensed under the [MIT license](https://opensourc
 * Donor (User) linking for multiple Donee's.
 * Grouping Donee's into family groups.
 * Auditing tools to keep track of changes.
+* Multi-lingual support.
 
 **Package Released**
 

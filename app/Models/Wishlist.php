@@ -53,7 +53,25 @@ class Wishlist extends Model implements AuditableContract
      */
     public function addSelection()
     {
-        return $this->user()->associate(Auth::user());
+        if($this->update(['status' => 'selected']))
+        {
+            return $this->user()->associate(Auth::user())->save();
+        }
+
+        return false;
+    }
+
+    /**
+     * Make a wishlist selected by a user
+     */
+    public function removeSelection()
+    {
+        if($this->update(['status' => 'unfilled']))
+        {
+            return $this->user()->dissociate()->save();
+        }
+
+        return false;
     }
 
     public function addLikeBy(User $user)

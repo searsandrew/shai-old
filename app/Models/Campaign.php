@@ -52,4 +52,14 @@ class Campaign extends Model implements AuditableContract
     {
         return $this->hasMany(Wishlist::class);
     }
+
+    /**
+     * A campaign has many Donee's through a wishlist
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function donees() : \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(Donee::class, Wishlist::class);
+    }
 }

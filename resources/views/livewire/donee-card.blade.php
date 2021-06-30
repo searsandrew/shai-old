@@ -7,16 +7,35 @@
     <form class="flex-auto p-6">
         <div class="flex flex-wrap">
             <h1 class="flex-auto text-xl font-semibold">{{ $wishlist->donee->name }}</h1>
-            <div class="text-xl font-semibold text-gray-500">Age {{ $wishlist->donee->age }} <x-gender-icon :gender="$wishlist->donee->gender" /></div>
-            <div class="w-full flex-none text-sm font-medium text-gray-500 mt-2">{{ $wishlist->status }}</div>
+            <div class="text-xl font-semibold text-gray-500">{{ __('Age') }} {{ $wishlist->donee->age }} <x-gender-icon :gender="$wishlist->donee->gender" /></div>
         </div>
         <div class="flex items-baseline mt-4 mb-6">
             {{ $wishlist->wishlist }}
         </div>
         <div class="flex space-x-3 text-sm font-medium">
             <div class="flex-auto flex space-x-3">
-                <button class="w-1/2 flex items-center justify-center rounded-md @if($wishlist->user_id != null) bg-green-500 text-white @else bg-black text-white @endif" type="button" wire:click="selectWishlist"><i class="fas fa-gifts pr-2"></i> {{ _('Donate') }}</button>
-                <button class="w-1/2 flex items-center justify-center rounded-md border border-gray-300" type="button"><i class="fas fa-donate"></i> {{ _('Support') }}</button>
+                @switch($wishlist->status)
+                    @case('selected')
+                        @if($wishlist->user_id == auth()->user()->id)
+                            <button class="w-1/2 flex items-center justify-center rounded-md bg-green-500 text-white" type="button" wire:click="$toggle('deselectingWishlist')" wire:loading.attr="disabled"><i class="far fa-check-circle pr-2"></i> {{ __('Selected') }}</button>
+                        @else
+                            <button class="w-1/2 flex items-center justify-center rounded-md bg-gray-100 text-gray-800 border-gray-300 cursor-not-allowed" type="button" disabled><i class="far fa-user-check pr-2"></i> {{ __('Claimed') }}</button>
+                        @endif
+                        @break
+
+                    @case('completed')
+                        <button class="w-1/2 flex items-center justify-center rounded-md bg-gray-100 text-green-800 border-green-600 cursor-default" type="button" disabled><i class="far fa-check-circle pr-2"></i> {{ __('Completed') }}</button>
+                        @break
+
+                    @case('retracted')
+                        <button class="w-1/2 flex items-center justify-center rounded-md bg-gray-100 text-red-800 border-red-600 cursor-not-allowed" type="button" disabled><i class="far fa-ban pr-2"></i> {{ __('Request Retracted') }}</button>
+                        @break
+
+                    @default
+                        <button class="w-1/2 flex items-center justify-center rounded-md bg-black text-white" type="button" wire:click="selectWishlist"><i class="fas fa-gifts pr-2"></i> {{ __('Select') }}</button>
+                        @break
+                @endswitch
+                <button class="w-1/2 flex items-center justify-center rounded-md border border-gray-300" type="button" wire:click="$toggle('infoModal')" wire:loading.attr="disabled"><i class="far fa-id-card pr-2"></i> {{ __('More Information') }}</button>
             </div>
             @can('donee_edit')
                 <a href="{{ route('donee.edit', $wishlist->donee) }}" class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300"><i class="far fa-edit"></i></a>
@@ -24,4 +43,44 @@
             <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300" type="button" wire:click="like" aria-label="like"><i class="far fa-heart"></i></button>
         </div>
     </form>
+
+    <x-jet-confirmation-modal wire:model="deselectingWishlist">
+        <x-slot name="title">
+            {{ __('Deselect Donee') }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Are you sure you want to deselect this donee? Once you deselect a donee, any user will be able to select this donee.') }}
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('deselectingWishlist')" wire:loading.attr="disabled">
+                {{ __('Nevermind') }}
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="deselectWishlist" wire:loading.attr="disabled">
+                {{ __('Deselect') }}
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
+
+    <x-jet-dialog-modal wire:model="infoModal">
+        <x-slot name="title">
+            {{ __('About') }} {{ $wishlist->donee->name }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ $wishlist->donee->description }}
+            <strong class="flex flex-full text-gray-900 mt-4">{{ __('Donation Instructions:') }}</strong>
+            <small class="flex flex-full text-gray-600">
+                {{ $wishlist->campaign->description }}
+            </small>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('infoModal')" wire:loading.attr="disabled">
+                {{ __('Done') }}
+            </x-jet-secondary-button>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>

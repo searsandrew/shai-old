@@ -9,6 +9,8 @@ class DoneeCard extends Component
 {
     public Wishlist $wishlist;
     public bool $image;
+    public bool $deselectingWishlist = false;
+    public bool $infoModal = false;
 
     public function mount(bool $image)
     {
@@ -23,6 +25,12 @@ class DoneeCard extends Component
     public function selectWishlist()
     {
         $this->wishlist->addSelection();
+    }
+
+    public function deselectWishlist()
+    {
+        $this->wishlist->removeSelection();
+        $this->deselectingWishlist = false;
     }
 
     public function render()
