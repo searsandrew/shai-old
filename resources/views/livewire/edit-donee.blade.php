@@ -6,7 +6,7 @@
                     {{ __('Edit') }} {{ $donee->name }}
                 </h2>
                 @can('donee_create')
-                    <a href="{{ route('donee.create') }}" class="btn-muted">{{ _('Add Donee') }}</a>
+                    <a href="{{ route('donee.create') }}" class="btn-muted">{{ __('Add Donee') }}</a>
                 @endcan
             </div>
         </div>
@@ -30,9 +30,27 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-4">
-                                <x-jet-label for="description" value="{{ __('Description') }}" />
+                                <x-jet-label for="description" value="{{ __('About') }}" />
                                 <x-jet-input id="description" type="text" class="mt-1 block w-full" wire:model.defer="donee.description" autocomplete="description" />
                                 <x-jet-input-error for="description" class="mt-2" />
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-4 grid grid-cols-2 gap-6">
+                                <div class="col-span-2 sm:col-span-1">
+                                    <x-jet-label for="age" value="{{ __('Age') }}" />
+                                    <x-jet-input id="age" type="text" class="mt-1 block w-full" wire:model.defer="donee.age" autocomplete="age" />
+                                    <x-jet-input-error for="age" class="mt-2" />
+                                </div>
+                                <div class="col-span-2 sm:col-span-1">
+                                    <x-jet-label for="gender" value="{{ __('Gender') }}" />
+                                    <select id="gender" class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" wire:model.defer="donee.gender" autocomplete="gender">
+                                        <option value="male">{{ __('Male') }}</option>
+                                        <option value="female">{{ __('Female') }}</option>
+                                        <option value="transgender">{{ __('Transgender') }}</option>
+                                        <option value="undeclared">{{ __('Undeclared') }}</option>
+                                    </select>
+                                    <x-jet-input-error for="gender" class="mt-2" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -71,10 +89,10 @@
                                 <div class="col-span-6 sm:col-span-4">
                                     <x-jet-label for="status" value="{{ __('Status') }}" />
                                     <select id="status" class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" wire:model="wishlists.{{ $index }}.status" autocomplete="status">
-                                        <option value="unfilled">Unfilled</option>
-                                        <option value="filled">Filled</option>
-                                        <option value="completed">Completed</option>
-                                        <option value="retracted">Retracted</option>
+                                        <option value="unfilled">{{ __('Unfilled') }}</option>
+                                        <option value="selected">{{ __('Selected') }}</option>
+                                        <option value="completed">{{ __('Completed') }}</option>
+                                        <option value="retracted">{{ __('Retracted') }}</option>
                                     </select>
                                     <x-jet-input-error for="status" class="mt-2" />
                                 </div>

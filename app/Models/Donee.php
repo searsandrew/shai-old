@@ -17,7 +17,7 @@ class Donee extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, HasTags, Auditable;
 
-    public $fillable = ['name', 'description'];
+    public $fillable = ['name', 'description', 'age', 'gender'];
 
     protected $attributes = [
         'slug' => 'name',
