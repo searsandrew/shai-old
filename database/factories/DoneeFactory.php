@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Donee;
+use App\Models\Family;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -22,14 +23,16 @@ class DoneeFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->name();
+        $gender = $this->faker->randomElement(['male', 'male', 'female', 'female', 'transgender', 'undeclared']);
+        $name = $this->faker->firstName($gender);
 
         return [
-            'name' => $name,
+            'firstname' => $name,
+            'family_id' => Family::inRandomOrder()->first()->id,
             'description' => $this->faker->sentence(),
             'slug' => Str::slug($name . '-' . Str::random(8), '-'),
             'age' => $this->faker->randomDigitNotNull(),
-            'gender' => $this->faker->randomElement(['male', 'male', 'female', 'female', 'transgender', 'undeclared']),
+            'gender' => $gender,
         ];
     }
 }

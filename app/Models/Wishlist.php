@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Campaign;
 use App\Models\Donee;
+use App\Models\Family;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,6 +19,14 @@ class Wishlist extends Model implements AuditableContract
     use HasFactory, SoftDeletes, Auditable;
 
     public $fillable = ['wishlist', 'status'];
+
+    public $appends = ['family'];
+
+    public function getFamilyAttribute()
+    {
+        return $this->attributes['family'] = $this->donee->family->id;
+
+    }
 
     /**
      * A wishlish belongs to a donee

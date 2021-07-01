@@ -16,7 +16,9 @@ class CreateDoneesTable extends Migration
         Schema::create('donees', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
-            $table->string('name');
+            $table->string('firstname');
+            $table->bigInteger('family_id')->unsigned();
+            $table->foreign('family_id')->references('id')->on('families');
             $table->text('description');
             $table->integer('age')->unsigned();
             $table->enum('gender', ['male', 'female', 'transgender', 'undeclared']);

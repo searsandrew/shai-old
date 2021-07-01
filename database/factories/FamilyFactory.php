@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Family;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class FamilyFactory extends Factory
 {
@@ -22,7 +23,8 @@ class FamilyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'slug' => Str::slug($name . '-' . Str::random(8), '-'),
+            'name' => $this->faker->lastName(),
         ];
     }
 }

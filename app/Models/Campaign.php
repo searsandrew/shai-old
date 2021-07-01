@@ -52,6 +52,20 @@ class Campaign extends Model implements AuditableContract
     {
         return $this->hasMany(Wishlist::class);
     }
+    
+    /**
+     * A campaign has many family wishlists
+     */
+    public function familyWishlists()
+    {
+        $wishlists = [];
+        foreach($this->wishlists as $wishlist)
+        {
+            $wishlists[$wishlist->donee->family->id][] = $wishlist;
+        }
+
+        return $wishlists;
+    }
 
     /**
      * A campaign has many Donee's through a wishlist

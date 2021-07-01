@@ -6,11 +6,19 @@
     @endif
     <form class="flex-auto p-6">
         <div class="flex flex-wrap">
-            <h1 class="flex-auto text-xl font-semibold"><x-name :wishlist="$wishlist" /></h1>
-            <div class="text-xl font-semibold text-gray-500">{{ __('Age') }} {{ $wishlist->donee->age }} <x-gender-icon :gender="$wishlist->donee->gender" /></div>
+            <h1 class="flex-auto text-xl font-semibold">{{  substr($family->name, 0, 1)  }} {{  __('Family') }}</h1>
+            <div class="text-xl font-semibold text-gray-500"><i class="fas fa-users"></i> {{ count($wishlists) }}</div>
         </div>
-        <div class="flex items-baseline mt-4 mb-6">
-            {{ $wishlist->wishlist }}
+        <div class="flex items-baseline mt-4 mb-6 grid grid-cols-1">
+            @foreach($wishlists as $donee)
+                <div class="grid grid-cols-2 gap-x-4 mb-4">
+                    <div class="font-semibold">{{ $donee->donee->firstname }}</div>
+                    <div class="text-right">{{ __('Age') }} {{ $donee->donee->age }} <x-gender-icon :gender="$donee->donee->gender" /></div>
+                    <div class="col-span-2 leading-snug text-sm text-gray-600">
+                        {{ $donee->wishlist }}
+                    </div>
+                </div>
+            @endforeach
         </div>
         <div class="flex space-x-3 text-sm font-medium">
             <div class="flex-auto flex space-x-3">
@@ -43,44 +51,4 @@
             <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300" type="button" wire:click="like" aria-label="like"><i class="far fa-heart"></i></button>
         </div>
     </form>
-
-    <x-jet-confirmation-modal wire:model="deselectingWishlist">
-        <x-slot name="title">
-            {{ __('Deselect Donee') }}
-        </x-slot>
-
-        <x-slot name="content">
-            {{ __('Are you sure you want to deselect this donee? Once you deselect a donee, any user will be able to select this donee.') }}
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('deselectingWishlist')" wire:loading.attr="disabled">
-                {{ __('Nevermind') }}
-            </x-jet-secondary-button>
-
-            <x-jet-danger-button class="ml-2" wire:click="deselectWishlist" wire:loading.attr="disabled">
-                {{ __('Deselect') }}
-            </x-jet-danger-button>
-        </x-slot>
-    </x-jet-confirmation-modal>
-
-    <x-jet-dialog-modal wire:model="infoModal">
-        <x-slot name="title">
-            {{ __('About') }} {{ $wishlist->donee->name }}
-        </x-slot>
-
-        <x-slot name="content">
-            {{ $wishlist->donee->description }}
-            <strong class="flex flex-full text-gray-900 mt-4">{{ __('Donation Instructions:') }}</strong>
-            <small class="flex flex-full text-gray-600">
-                {{ $wishlist->campaign->description }}
-            </small>
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('infoModal')" wire:loading.attr="disabled">
-                {{ __('Done') }}
-            </x-jet-secondary-button>
-        </x-slot>
-    </x-jet-dialog-modal>
 </div>

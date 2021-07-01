@@ -49,13 +49,13 @@ class Donee extends Model implements AuditableContract
     }
 
     /**
-     * A donee may belong to many families
+     * A donee may belong to a family
      * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function families() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function family() : \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsToMany(Family::class);
+        return $this->belongsTo(Family::class);
     }
 
     /**
