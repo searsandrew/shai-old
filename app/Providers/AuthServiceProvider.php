@@ -28,9 +28,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define( 'donee_edit', function(User $user) { return Auth::user()->id === 24 ? TRUE : FALSE; });
-        Gate::define( 'donee_create', function(User $user) { return Auth::user()->id === 24 ? TRUE : FALSE; });
+        Gate::define( 'donee_edit', function(User $user) { return in_array(Auth::user()->id, explode(',', env('APP_ADMIN'))) ? TRUE : FALSE; });
+        Gate::define( 'donee_create', function(User $user) { return in_array(Auth::user()->id, explode(',', env('APP_ADMIN'))) ? TRUE : FALSE; });
 
-        Gate::define('administer', function(User $user) { return Auth::user()->id === 24 ? TRUE : FALSE; });
+        Gate::define('administer', function(User $user) { return in_array(Auth::user()->id, explode(',', env('APP_ADMIN'))) ? TRUE : FALSE; });
     }
 }
