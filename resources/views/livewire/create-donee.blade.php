@@ -1,13 +1,5 @@
 <div>
-    <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-row">
-                <h2 class="flex-grow font-semibold text-xl text-gray-800 leading-tight align-middle">
-                    {{ __('Create Donee') }}
-                </h2>
-            </div>
-        </div>
-    </header>
+    <x-admin-header />
 
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         <div class="md:grid md:grid-cols-3 md:gap-6" }}>
@@ -28,7 +20,7 @@
                                 <div class="col-span-2 sm:col-span-1">
                                     <x-jet-label for="family" value="{{ __('Family') }}" />
                                     <select id="family" class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" wire:model.defer="family" autocomplete="family">
-                                        <option disabled selected>-- Select Family --</option>
+                                        <option selected>-- Select Family --</option>
                                         @foreach($families as $family)
                                             <option value="{{ $family->id }}">{{ $family->name }}</option>
                                         @endforeach
@@ -52,7 +44,7 @@
                                 <div class="col-span-2 sm:col-span-1">
                                     <x-jet-label for="gender" value="{{ __('Gender') }}" />
                                     <select id="gender" class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" wire:model.defer="gender" autocomplete="gender">
-                                        <option disabled selected>-- Select Gender --</option>
+                                        <option selected>-- Select Gender --</option>
                                         <option value="male">{{ __('Male') }}</option>
                                         <option value="female">{{ __('Female') }}</option>
                                         <option value="transgender">{{ __('Transgender') }}</option>

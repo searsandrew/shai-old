@@ -1,9 +1,14 @@
 <?php
 
 use App\Models\Campaign;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoneeController;
 use App\Http\Livewire\CreateDonee;
 use App\Http\Livewire\EditDonee;
+use App\Http\Livewire\FamilyCreate;
+use App\Http\Livewire\FamilyEdit;
+use App\Http\Livewire\CampaignCreate;
+use App\Http\Livewire\CampaignEdit;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -51,4 +56,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/donee', [DoneeController::class, 'index'])->name('donee.index');
     Route::get('/donee/create', CreateDonee::class)->name('donee.create');
     Route::get('/donee/{donee}/edit', EditDonee::class)->name('donee.edit');
+
+    Route::get('/family/create', FamilyCreate::class)->name('family.create');
+    Route::get('/family/{family}/edit', FamilyEdit::class)->name('family.edit');
+
+    Route::get('/campaign/create', CampaignCreate::class)->name('campaign.create');
+    Route::get('/campaign/{campaign}/edit', CampaignEdit::class)->name('campaign.edit');
+
+    Route::resource('admin', AdminController::class);
 });

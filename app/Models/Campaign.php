@@ -14,16 +14,7 @@ class Campaign extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, Auditable;
 
-    public $fillable = ['name', 'description', 'design', 'started_at', 'ended_at'];
-
-    protected $attributes = [
-        'slug' => 'name',
-    ];
-
-    public function setSlugAttribute($value)
-    {
-        $this->attributes['slug'] = Str::slug($this->name . '-' . Str::random(8), '-');
-    }
+    public $fillable = ['slug', 'name', 'description', 'design', 'started_at', 'ended_at'];
 
     /**
      * Set the route key name to slug

@@ -13,16 +13,7 @@ class Family extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, Auditable;
 
-    public $fillable = ['name'];
-
-    protected $attributes = [
-        'slug' => 'name',
-    ];
-
-    public function setSlugAttribute($value)
-    {
-        $this->attributes['slug'] = Str::slug($this->name . '-' . Str::random(8), '-');
-    }
+    public $fillable = ['slug', 'name'];
 
     /**
      * Set the route key name to slug

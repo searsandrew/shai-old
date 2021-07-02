@@ -18,6 +18,11 @@
                     <x-jet-nav-link href="{{ route('donee.index') }}" :active="request()->routeIs('donee.index')">
                         {{ __('Donee') }}
                     </x-jet-nav-link>
+                    @can('administer')
+                        <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.*')">
+                            {{ __('Administer') }}
+                        </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 
