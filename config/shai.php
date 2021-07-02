@@ -5,7 +5,8 @@ return [
     'logo' => env('APP_LOGO', '/images/shai.svg'),
     'mark' => env('APP_MARK', '/images/shai.svg'),
     'card' => env('APP_CARD_LOGO', '/images/shai.svg'),
-    'organization' => env('APP_ORGANIZATION', 'Mayfifteenth'),
-    'organization_url' => env('APP_ORGANIZATION_URL', 'https://www.mayfifteenth.com/'),
-    'organization_description' => env('APP_ORGANIZATION_DESCRIPTION', 'Lorem ipsum dolar sit')
+    'organization' => env('ORGANIZATION_NAME', 'Shai Donation Platform'),
+    'organization_logo' => env('ORGANIZATION_LOGO', '/images/shai.svg'),
+    'organization_url' => env('ORGANIZATION_URL', 'https://www.github.com/searsandrew/shai'),
+    'organization_description' => env('APP_ORGANIZATION_DESCRIPTION', 'Shai is a donation/giving platform for community churches and organizations that provide seasonal based outreach programs (back-to-school backpacks, Christmas gifts, etc).')
 ];
