@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Campaign;
 use App\Http\Controllers\DoneeController;
 use App\Http\Livewire\CreateDonee;
 use App\Http\Livewire\EditDonee;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $current = Campaign::whereDate('started_at', '<=', now())->whereDate('ended_at', '>=', now())->first();
+    if(is_null($current))
+    {
+        $current = (object) [
+            'name' => config('app.name'),
+            'description' => 'There is no active campaign at this time.',
+            'design' => (object) [
+                'logo' => '',
+                'background' => '',
+                'icon' => '',
+            ]
+        ];
+    }
+    
+    if(Storage::exists($current->design->background))
+    {
+        $background = Storage::get($current->design->background);
+    }
+
+    return view('welcome', compact('current'));
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

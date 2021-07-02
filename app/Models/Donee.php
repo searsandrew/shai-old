@@ -17,16 +17,7 @@ class Donee extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, HasTags, Auditable;
 
-    public $fillable = ['name', 'description', 'age', 'gender'];
-
-    protected $attributes = [
-        'slug' => 'name',
-    ];
-
-    public function setSlugAttribute($value)
-    {
-        $this->attributes['slug'] = Str::slug($this->name . '-' . Str::random(8), '-');
-    }
+    public $fillable = ['slug', 'firstname', 'description', 'age', 'gender'];
 
     /**
      * Set the route key name to slug
