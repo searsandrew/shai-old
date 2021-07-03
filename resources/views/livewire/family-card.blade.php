@@ -4,10 +4,10 @@
             <img src="https://www.fillmurray.com/200/300" alt="" class="absolute inset-0 w-full h-full object-cover rounded-l-md" />
         </div>
     @endif
-    <form class="grid grid-cols-2  p-6">
+    <form class="grid grid-cols-2 p-6">
         <div class="col-span-2 grid grid-cols-4">
             <h1 class="col-span-3 sm:col-span-2 text-xl font-semibold">{{  substr($family->name, 0, 1)  }} {{  __('Family') }}</h1>
-            <div class="col-span-1 sm:col-span-2 text-xl font-semibold text-gray-500"><i class="fas fa-users"></i> {{ count($wishlists) }}</div>
+            <div class="col-span-1 sm:col-span-2 text-xl font-semibold text-gray-500 text-right"><i class="fas fa-users"></i> {{ count($wishlists) }}</div>
         </div>
         <div class="col-span-2 items-baseline mt-4 mb-6 grid grid-cols-1">
             @foreach($wishlists as $donee)
