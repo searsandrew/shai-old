@@ -20,7 +20,7 @@
                 </div>
             @endforeach
         </div>
-        <div class="col-span-2 space-x-3 text-sm font-medium">
+        <div class="col-span-2 flex space-x-3 text-sm font-medium">
             <div class="flex-auto flex space-x-3">
                 @switch($wishlist->status)
                     @case('selected')
