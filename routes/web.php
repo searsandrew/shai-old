@@ -38,7 +38,7 @@ Route::get('/', function () {
         ];
     }
     
-    if(Storage::exists($current->design->background))
+    if(Storage::url($current->design->background) != '')
     {
         $background = Storage::url($current->design->background);
     }
