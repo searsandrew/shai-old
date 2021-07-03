@@ -41,6 +41,11 @@ class CreateDonee extends Component
             'gender' => $this->gender,
         ]);
 
+        $this->firstname = '';
+        $this->description = '';
+        $this->age = '';
+        $this->gender = '';
+
         $this->emit('saved');
     }
 
