@@ -1,5 +1,5 @@
 <div class="flex flex-initial flex-shrink-0 w-1/2 bg-white rounded-md shadow">
-    @if($image)
+    @if($image == true)
         <div class="flex-none w-48 relative">
             <img src="https://www.fillmurray.com/200/300" alt="" class="absolute inset-0 w-full h-full object-cover rounded-l-md" />
         </div>
