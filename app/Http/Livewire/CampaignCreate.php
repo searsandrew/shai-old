@@ -40,9 +40,9 @@ class CampaignCreate extends Component
             'started_at' => $this->started,
             'ended_at' => $this->ended,
             'design' => json_encode([
-                'icon' => 'public/' . $imageSlug . '-icon.png',
-                'logo' => 'public/' . $imageSlug . '-logo.png',
-                'background' => 'public/' . $imageSlug . '-background.png',
+                'icon' => 'campaigns/' . $imageSlug . '-icon.png',
+                'logo' => 'campaigns/' . $imageSlug . '-logo.png',
+                'background' => 'campaigns/' . $imageSlug . '-background.png',
                 'family' => $this->family,
                 'private' => $this->private,
                 'image' => $this->image,

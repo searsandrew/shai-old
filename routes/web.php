@@ -40,7 +40,7 @@ Route::get('/', function () {
     
     if(Storage::exists($current->design->background))
     {
-        $background = Storage::get($current->design->background);
+        $background = Storage::url($current->design->background);
     }
 
     return view('welcome', compact('current'));
