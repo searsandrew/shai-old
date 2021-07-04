@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Family;
 use App\Models\Wishlist;
 
+use Auth;
+
 class FamilyCard extends Component
 {
     public array $wishlists;
@@ -15,14 +17,14 @@ class FamilyCard extends Component
     public bool $deselectingFamily = false;
     public bool $infoModal = false;
 
-    public function selectFamily()
-    {
-        foreach($this->wishlists as $wishlist)
-        {
-            $current = Wishlist::find($wishlist['id']);
-            $current->addSelection();
-        }
-    }
+    // public function selectFamily()
+    // {
+    //     foreach($this->wishlists as $wishlist)
+    //     {
+    //         $current = Wishlist::find($wishlist['id']);
+    //         $current->addSelection();
+    //     }
+    // }
 
     public function deselectFamily()
     {
@@ -42,6 +44,18 @@ class FamilyCard extends Component
         $this->wishlists = $wishlist;
         $this->wishlist = $pluck;
         $this->family = Family::find($wishlist[0]->family);
+    }
+
+    public function selectFamily()
+    {
+        {{ $this->wishlists; }}
+        foreach($this->wishlists as $wishlist)
+        {
+            $wishlistObj = Wishlist::find($wishlist['id']);
+            $wishlistObj->status = 'selected';
+            $wishlistObj->user_id = Auth::user()->id;
+            $wishlistObj->save();
+        }
     }
 
     public function render()
