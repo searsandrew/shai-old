@@ -25,7 +25,7 @@
                 @switch($wishlist->status)
                     @case('selected')
                         @if($wishlist->user_id == auth()->user()->id)
-                            <button class="w-1/2 flex items-center justify-center rounded-md bg-green-500 text-white" type="button" wire:click="$toggle('deselectingWishlist')" wire:loading.attr="disabled"><i class="far fa-check-circle pr-2"></i> {{ __('Selected') }}</button>
+                            <button class="w-1/2 flex items-center justify-center rounded-md bg-green-500 text-white" type="button" wire:click="$toggle('deselectingFamily')" wire:loading.attr="disabled"><i class="far fa-check-circle pr-2"></i> {{ __('Selected') }}</button>
                         @else
                             <button class="w-1/2 flex items-center justify-center rounded-md bg-gray-100 text-gray-800 border-gray-300 cursor-not-allowed" type="button" disabled><i class="far fa-user-check pr-2"></i> {{ __('Claimed') }}</button>
                         @endif
@@ -40,7 +40,7 @@
                         @break
 
                     @default
-                        <button class="w-1/2 flex items-center justify-center rounded-md bg-black text-white" type="button" wire:click="selectWishlist"><i class="fas fa-gifts pr-2"></i> {{ __('Select') }}</button>
+                        <button class="w-1/2 flex items-center justify-center rounded-md bg-black text-white" type="button" wire:click="selectFamily"><i class="fas fa-gifts pr-2"></i> {{ __('Select') }}</button>
                         @break
                 @endswitch
                 <button class="w-1/2 flex items-center justify-center rounded-md border border-gray-300" type="button" wire:click="$toggle('infoModal')" wire:loading.attr="disabled"><i class="far fa-id-card pr-2"></i> {{ __('More Information') }}</button>
@@ -51,4 +51,24 @@
             <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300" type="button" wire:click="like" aria-label="like"><i class="far fa-heart"></i></button>
         </div>
     </form>
+
+    <x-jet-confirmation-modal wire:model="deselectingFamily">
+        <x-slot name="title">
+            {{ __('Deselect Familu') }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Are you sure you want to deselect this family? Once you deselect a family, any user will be able to select this family.') }}
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('deselectingFamily')" wire:loading.attr="disabled">
+                {{ __('Nevermind') }}
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="deselectFamily" wire:loading.attr="disabled">
+                {{ __('Deselect') }}
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
 </div>

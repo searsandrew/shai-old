@@ -12,6 +12,27 @@ class FamilyCard extends Component
     public bool $image;
     public $wishlist;
     public Family $family;
+    public bool $deselectingFamily = false;
+
+    public function selectFamily()
+    {
+        foreach($this->wishlists as $wishlist)
+        {
+            $current = Wishlist::find($wishlist['id']);
+            $current->addSelection();
+        }
+    }
+
+    public function deselectFamily()
+    {
+        foreach($this->wishlists as $wishlist)
+        {
+            $current = Wishlist::find($wishlist->id);
+            $current->removeSelection();
+        }
+
+        $this->deselectingFamily = false;
+    }
 
     public function mount(bool $image, array $wishlist)
     {
