@@ -13,6 +13,7 @@ class FamilyCard extends Component
     public $wishlist;
     public Family $family;
     public bool $deselectingFamily = false;
+    public bool $infoModal = false;
 
     public function selectFamily()
     {
@@ -27,7 +28,7 @@ class FamilyCard extends Component
     {
         foreach($this->wishlists as $wishlist)
         {
-            $current = Wishlist::find($wishlist->id);
+            $current = Wishlist::find($wishlist['id']);
             $current->removeSelection();
         }
 

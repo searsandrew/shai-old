@@ -12,10 +12,10 @@
         <div class="col-span-2 items-baseline mt-4 mb-6 grid grid-cols-1">
             @foreach($wishlists as $donee)
                 <div class="grid grid-cols-2 gap-x-4 mb-4">
-                    <div class="font-semibold">{{ $donee->donee->firstname }}</div>
-                    <div class="text-right">{{ __('Age') }} {{ $donee->donee->age }} <x-gender-icon :gender="$donee->donee->gender" /></div>
+                    <div class="font-semibold">{{ $donee['donee']['firstname'] }}</div>
+                    <div class="text-right">{{ __('Age') }} {{ $donee['donee']['age'] }} <x-gender-icon :gender="$donee['donee']['gender']" /></div>
                     <div class="col-span-2 leading-snug text-sm text-gray-600">
-                        {{ $donee->wishlist }}
+                        {{ $donee['wishlist'] }}
                     </div>
                 </div>
             @endforeach
@@ -71,4 +71,24 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-confirmation-modal>
+
+    <x-jet-dialog-modal wire:model="infoModal">
+        <x-slot name="title">
+            {{ __('About') }} {{ $wishlist->donee->name }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ $wishlist->donee->description }}
+            <strong class="flex flex-full text-gray-900 mt-4">{{ __('Donation Instructions:') }}</strong>
+            <small class="flex flex-full text-gray-600">
+                {{ $wishlist->campaign->description }}
+            </small>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('infoModal')" wire:loading.attr="disabled">
+                {{ __('Done') }}
+            </x-jet-secondary-button>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>
