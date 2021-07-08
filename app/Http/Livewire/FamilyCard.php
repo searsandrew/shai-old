@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Family;
 use App\Models\Wishlist;
+use App\Mail\DoneeSelected;
+use Illuminate\Support\Facades\Mail;
 
 use Auth;
 
@@ -48,14 +50,17 @@ class FamilyCard extends Component
 
     public function selectFamily()
     {
-        {{ $this->wishlists; }}
+        
         foreach($this->wishlists as $wishlist)
         {
             $wishlistObj = Wishlist::find($wishlist['id']);
             $wishlistObj->status = 'selected';
             $wishlistObj->user_id = Auth::user()->id;
             $wishlistObj->save();
+            $campaign = $wishlistObj->campaign;
         }
+
+        Mail::to(Auth::user())->send(new DoneeSelected($campaign));
     }
 
     public function render()

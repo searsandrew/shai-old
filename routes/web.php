@@ -65,3 +65,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('admin', AdminController::class);
 });
+
+Route::get('/mailable', function () {
+    $campaign = App\Models\Campaign::find(1);
+
+    return new App\Mail\DoneeSelected($campaign);
+});

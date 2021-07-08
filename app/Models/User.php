@@ -69,4 +69,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(Wishlist::class);
     }
+
+    public function wishlistsByCampaign($campaign)
+    {
+        return $this->hasMany(Wishlist::class)->where('campaign_id', $campaign)->get();
+    }
+
+    public function familyWishlistsByCampaign($campaign)
+    {
+        $wishlists = [];
+        $familyWishlists = $this->hasMany(Wishlist::class)->where('campaign_id', $campaign)->get();
+        foreach($this->wishlists as $wishlist)
+        {
+            $wishlists[$wishlist->donee->family->id][] = $wishlist;
+        }
+
+        return $wishlists;
+    }
 }

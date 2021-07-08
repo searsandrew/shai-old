@@ -1,0 +1,48 @@
+{
+    "About" :
+    "Add Donee" :
+    "Administer" :
+    "Age" :
+    "Campaign Name" : 
+    "Campaign Logo" :
+    "Campaign Background Image" :
+    "Camapign Icon" :
+    "Claimed" :
+    "Completed" :
+    "Create Donee" :
+    "Create Family" :
+    "Dashboard" :
+    "Description" : 
+    "Deselect" : 
+    "Deselect Donee" :
+    "Donation Instructions:" : 
+    "Done" :
+    "Donee" :
+    "Edit" :
+    "Edit Donee" : 
+    "End Date" :
+    "Families" : 
+    "Force privacy?" :
+    "Manage Families" :
+    "Manage Donee's" : 
+    "More Information" :
+    "Name" :
+    "Nevermind" : 
+    "Request Retracted" :
+    "Retracted" :
+    "Save" : 
+    "Saved" : 
+    "Select" : 
+    "Selected" : 
+    "Start Date" : 
+    "Unfilled" : 
+    "Use families?" :
+    "Use images?" :
+
+    "Are you sure you want to deselect this donee? Once you deselect a donee, any user will be able to select this donee." :
+    "Create a new Donee. To add a campaign specific wishlist, use the section below." :
+    "Create a new Family. Please ensure you are not duplicating families, it is reccomended to use an identifer for families with similar last names." : 
+    "Edit a family name here, a family slug will be automatically regenerated." : 
+    "Update information about the Donee here. For campaign specific edits for this Donee, use the section below." :
+    "You haven't selected any current Donee's." :
+}

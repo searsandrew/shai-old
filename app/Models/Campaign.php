@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
+use Auth;
+
 class Campaign extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, Auditable;
@@ -50,6 +52,18 @@ class Campaign extends Model implements AuditableContract
     public function familyWishlists()
     {
         $wishlists = [];
+        foreach($this->wishlists as $wishlist)
+        {
+            $wishlists[$wishlist->donee->family->id][] = $wishlist;
+        }
+
+        return $wishlists;
+    }
+
+    public function familyWishlistsByCampaign($campaign)
+    {
+        $wishlists = [];
+        $familyWishlists = Auth::user()->hasMany(Wishlist::class)->where('campaign_id', $campaign)->get();
         foreach($this->wishlists as $wishlist)
         {
             $wishlists[$wishlist->donee->family->id][] = $wishlist;
