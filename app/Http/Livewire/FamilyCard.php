@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Family;
 use App\Models\Wishlist;
 use App\Mail\DoneeSelected;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 
 use Auth;
@@ -56,11 +57,22 @@ class FamilyCard extends Component
             $wishlistObj = Wishlist::find($wishlist['id']);
             $wishlistObj->status = 'selected';
             $wishlistObj->user_id = Auth::user()->id;
+            $wishlistObj->emailed_at = Carbon::now();
             $wishlistObj->save();
             $campaign = $wishlistObj->campaign;
         }
 
         Mail::to(Auth::user())->send(new DoneeSelected($campaign));
+
+        return redirect()->to('/dashboard');
+    }
+
+    public function email()
+    {
+        // dd(Wishlist::find($this->wishlists[0]['id']));
+        $wishlist = Wishlist::find($this->wishlists[0]['id']);
+        Mail::to($wishlist->user)->send(new DoneeSelected($wishlist->campaign, $wishlist->user));
+        $this->emit('sent');
     }
 
     public function render()

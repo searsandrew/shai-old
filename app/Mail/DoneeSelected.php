@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Campaign;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,15 +17,17 @@ class DoneeSelected extends Mailable
 
     public Campaign $campaign;
     public $wishlists;
+    public User $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Campaign $campaign)
+    public function __construct(Campaign $campaign, $user = false)
     {
         $this->campaign = $campaign;
+        $this->user = !$user ? Auth::user() : $user;
         $this->wishlists = $this->getWishlists();
     }
 
@@ -32,9 +35,9 @@ class DoneeSelected extends Mailable
     {
         if($this->campaign->design->family == 'true')
         {
-            return Auth::user()->familyWishlistsByCampaign($this->campaign->id);
+            return $this->user->familyWishlistsByCampaign($this->campaign->id);
         }
-        return Auth::user()->wishlistsByCampaign($this->campaign->id);
+        return $this->user->wishlistsByCampaign($this->campaign->id);
     }
 
     /**

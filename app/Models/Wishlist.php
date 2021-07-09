@@ -19,7 +19,7 @@ class Wishlist extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, Auditable;
 
-    public $fillable = ['wishlist', 'status'];
+    public $fillable = ['wishlist', 'status', 'emailed_at'];
 
     public $appends = ['family'];
 

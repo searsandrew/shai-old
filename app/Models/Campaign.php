@@ -43,7 +43,7 @@ class Campaign extends Model implements AuditableContract
      */
     public function wishlists() : \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Wishlist::class);
+        return $this->hasMany(Wishlist::class)->orderBy('status', 'asc');
     }
     
     /**

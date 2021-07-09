@@ -15,7 +15,14 @@
         @foreach($wishlists as $family)
             @foreach($family as $wishlist)
                 <dt>{{ $wishlist->donee->firstname }} <em>[Age {{ $wishlist->donee->age }}, {{ucfirst( $wishlist->donee->gender )}}]</em></dt>
-                <dd>{{ $wishlist->wishlist }}</dd>
+                <dd>
+                    {{ $wishlist->wishlist }}
+                    @if($wishlist->attachment_id != null)
+                        @component('mail::button', ['url' => \Storage::url($wishlist->attachment->filename)])
+                            {{ $wishlist->attachment->name }}
+                        @endcomponent
+                    @endif
+                </dd>
             @endforeach
             <hr/>
         @endforeach
