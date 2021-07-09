@@ -47,14 +47,21 @@
             </div>
             @can('donee_edit')
                 <a href="{{ route('donee.edit', $wishlist->donee) }}" class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300"><i class="far fa-edit"></i></a>
+                <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300" type="button" wire:click="email" aria-label="like">
+                    @if($wishlist->emailed_at)
+                        <i class="fas fa-paper-plane"></i>
+                    @else
+                        <i class="far fa-paper-plane"></i>
+                    @endif
+                </button>
             @endcan
-            <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300" type="button" wire:click="like" aria-label="like"><i class="far fa-heart"></i></button>
+            <!-- <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300" type="button" wire:click="like" aria-label="like"><i class="far fa-heart"></i></button> -->
         </div>
     </form>
 
     <x-jet-confirmation-modal wire:model="deselectingFamily">
         <x-slot name="title">
-            {{ __('Deselect Familu') }}
+            {{ __('Deselect Family') }}
         </x-slot>
 
         <x-slot name="content">
@@ -74,11 +81,17 @@
 
     <x-jet-dialog-modal wire:model="infoModal">
         <x-slot name="title">
-            {{ __('About') }} {{ $wishlist->donee->name }}
+            {{ __('Details') }}
         </x-slot>
 
         <x-slot name="content">
-            {{ $wishlist->donee->description }}
+            @foreach($wishlists as $donee)
+                <ul class="mb-4">
+                    <li class="text-gray-600">
+                        {{ $donee['wishlist'] }}
+                    </li>
+                </ul>
+            @endforeach
             <strong class="flex flex-full text-gray-900 mt-4">{{ __('Donation Instructions:') }}</strong>
             <small class="flex flex-full text-gray-600">
                 {{ $wishlist->campaign->description }}
