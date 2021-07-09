@@ -18,7 +18,7 @@
                 <dd>
                     {{ $wishlist->wishlist }}
                     @if($wishlist->attachment_id != null)
-                        @component('mail::button', ['url' => config('app.url') . '/storage' . $wishlist->attachment->filename])
+                        @component('mail::button', ['url' => config('app.url') . 'storage/' . $wishlist->attachment->filename])
                             {{ $wishlist->attachment->name }}
                         @endcomponent
                     @endif
