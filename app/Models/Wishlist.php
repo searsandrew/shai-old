@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Attachment;
 use App\Models\Campaign;
 use App\Models\Donee;
 use App\Models\Family;
@@ -87,5 +88,10 @@ class Wishlist extends Model implements AuditableContract
     public function addLikeBy(User $user)
     {
         dd('fail');
+    }
+
+    public function attachment()
+    {
+        return $this->belongsTo(Attachment::class);
     }
 }

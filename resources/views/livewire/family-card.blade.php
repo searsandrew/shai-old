@@ -16,6 +16,9 @@
                     <div class="text-right">{{ __('Age') }} {{ $donee['donee']['age'] }} <x-gender-icon :gender="$donee['donee']['gender']" /></div>
                     <div class="col-span-2 leading-snug text-sm text-gray-600">
                         {{ $donee['wishlist'] }}
+                        @if($donee->attachment)
+                            <a href="{{ Storage::url($donee->attachment->filename) }}"  target="_new"  class="flex text-red-600 hover:text-red-800 hover:underline mt-1"><i class="fas fa-file-download mr-1"></i> {{ $donee->attachment->name }}</a>
+                        @endif
                     </div>
                 </div>
             @endforeach
