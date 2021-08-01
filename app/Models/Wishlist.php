@@ -85,6 +85,11 @@ class Wishlist extends Model implements AuditableContract
         return false;
     }
 
+    public function completeWishlist()
+    {
+        $this->update(['status' => 'completed']);
+    }
+
     public function addLikeBy(User $user)
     {
         dd('fail');

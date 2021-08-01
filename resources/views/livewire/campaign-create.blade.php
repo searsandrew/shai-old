@@ -93,5 +93,8 @@
                 </form>
             </div>
         </div>
+        <x-jet-section-border />    
+
+        <livewire:campaign-edit />
     </div>
 </div>

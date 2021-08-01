@@ -9,6 +9,7 @@ use App\Http\Livewire\FamilyCreate;
 use App\Http\Livewire\FamilyEdit;
 use App\Http\Livewire\CampaignCreate;
 use App\Http\Livewire\CampaignEdit;
+use App\Http\Livewire\CampaignShow;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -62,6 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/campaign/create', CampaignCreate::class)->name('campaign.create');
     Route::get('/campaign/{campaign}/edit', CampaignEdit::class)->name('campaign.edit');
+    Route::get('/campaign/{campaign}', CampaignShow::class)->name('campaign.show');
 
     Route::resource('admin', AdminController::class);
 });
