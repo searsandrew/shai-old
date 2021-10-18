@@ -19,7 +19,7 @@
                     @foreach($campaign->wishlists as $wishlist)
                         <tr>
                             <td>{{ $wishlist->donee->firstname }} {{ $wishlist->donee->family->name }}</td>
-                            <td>
+                            <td class="text-center">
                                 @if($wishlist->status == 'selected' || $wishlist->status == 'completed')
                                     {{ $wishlist->user->name }}
                                 @else
@@ -27,9 +27,9 @@
                                 @endif
                             </td>
                             <td>{{ $wishlist->wishlist }}</td>
-                            <td class="text-center">{{ $wishlist->status }}</td>
-                            <td>
-                                <button class="flex items-center justify-center rounded-md bg-black text-white" type="button" wire:click="completeWishlist">{{ __('Done') }}</button>
+                            <td class="text-center">{{ ucfirst($wishlist->status) }}</td>
+                            <td class="text-center">
+                                <button class="flex items-center justify-center rounded-md bg-black text-white p-1" type="button" wire:click="completeWishlist({{ $wishlist }})"><i class="far fa-check-circle"></i></button>
                             </td>
                         </tr>
                     @endforeach

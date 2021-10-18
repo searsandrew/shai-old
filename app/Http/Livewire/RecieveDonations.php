@@ -4,19 +4,21 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Campaign;
+use App\Models\Wishlist;
 
 class RecieveDonations extends Component
 {
     public Campaign $campaign;
+    public Wishlist $wishlist;
 
     public function mount(Campaign $campaign)
     {
         $this->campaign = $campaign;
     }
 
-    public function completeWishlist()
+    public function completeWishlist(Wishlist $wishlist)
     {
-        $this->wishlist->completeWishlist();
+        $wishlist->completeWishlist();
     }
 
     public function render()
