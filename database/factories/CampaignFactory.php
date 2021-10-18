@@ -22,8 +22,10 @@ class CampaignFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->company();
+        
         return [
-            'name' => $this->faker->company(),
+            'name' => $name,
             'description' => $this->faker->text(),
             'design' => '{"image":false,"family":"true","private":"false"}',
             'started_at' => $this->faker->date(),

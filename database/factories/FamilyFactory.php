@@ -22,9 +22,11 @@ class FamilyFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->lastName();
+        
         return [
             'slug' => Str::slug($name . '-' . Str::random(8), '-'),
-            'name' => $this->faker->lastName(),
+            'name' => $name,
         ];
     }
 }

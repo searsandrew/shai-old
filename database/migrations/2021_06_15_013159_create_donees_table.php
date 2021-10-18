@@ -18,6 +18,7 @@ class CreateDoneesTable extends Migration
             $table->string('slug')->unique();
             $table->string('firstname');
             $table->bigInteger('family_id')->unsigned();
+            $table->string('lastname');
             $table->foreign('family_id')->references('id')->on('families');
             $table->text('description');
             $table->integer('age')->unsigned();
