@@ -59,6 +59,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/family/create', FamilyCreate::class)->name('family.create');
     Route::get('/family/{family}/edit', FamilyEdit::class)->name('family.edit');
 
+    Route::get('/campaigns', CampaignIndex::class)->name('campaign.index');
     Route::get('/campaign/create', CampaignCreate::class)->name('campaign.create');
     Route::get('/campaign/{campaign}/edit', CampaignEdit::class)->name('campaign.edit');
     Route::get('/campaign/{campaign}', CampaignShow::class)->name('campaign.show');
