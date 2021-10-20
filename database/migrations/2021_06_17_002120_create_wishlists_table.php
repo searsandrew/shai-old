@@ -15,6 +15,7 @@ class CreateWishlistsTable extends Migration
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
+            $table->string('slug')->unique();
             $table->bigInteger('donee_id')->unsigned();
             $table->foreign('donee_id')->references('id')->on('donees');
             $table->bigInteger('campaign_id')->unsigned();

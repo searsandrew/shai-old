@@ -7,6 +7,7 @@ use App\Models\Donee;
 use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class WishlistFactory extends Factory
 {
@@ -24,8 +25,11 @@ class WishlistFactory extends Factory
      */
     public function definition()
     {
+        $donee = Donee::inRandomOrder()->first();
+
         return [
-            'donee_id' => Donee::inRandomOrder()->first()->id,
+            'slug' => Str::slug($donee->firstname . '-' . Str::random(8), '-'),
+            'donee_id' => $donee->id,
             'campaign_id' => Campaign::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id,
             'wishlist' => $this->faker->text(),

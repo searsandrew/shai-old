@@ -19,9 +19,19 @@ class Wishlist extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, Auditable;
 
-    public $fillable = ['wishlist', 'status', 'emailed_at'];
+    public $fillable = ['slug', 'wishlist', 'status', 'emailed_at'];
 
     public $appends = ['family'];
+
+    /**
+     * Set the route key name to slug
+     * 
+     * @return string
+     */
+    public function getRouteKeyName() : string
+    {
+        return 'slug';
+    }
 
     public function getFamilyAttribute()
     {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Actions\PrintLabels;
+use App\Actions\UpdateWishlistFromQR;
 use App\Models\Campaign;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoneeController;
@@ -65,9 +66,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/campaign/create', CampaignCreate::class)->name('campaign.create');
     Route::get('/campaign/{campaign}/edit', CampaignEdit::class)->name('campaign.edit');
     Route::get('/campaign/{campaign}', CampaignShow::class)->name('campaign.show');
-    Route::post('/campaign/{campaign}/print', PrintLabels::class)->name('campaign.print');
+    Route::get('/campaign/{campaign}/print', PrintLabels::class)->name('campaign.print');
 
     Route::resource('admin', AdminController::class);
+
+    Route::get('/wishlist/{wishlist}/qr', UpdateWishlistFromQR::class)->name('wishlist.qr');
 });
 
 Route::get('/mailable', function () {
