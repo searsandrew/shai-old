@@ -33,7 +33,17 @@ class Campaign extends Model implements AuditableContract
      */
     public function getDesignAttribute($value)
     {
-        return json_decode($value);
+        if($this->isJson($value))
+        {
+            return json_decode($value);
+        }
+
+        return $value;
+    }
+
+    public function setDesignAttribute($value)
+    {
+        $this->attributes['design'] = json_encode($value);
     }
 
     /**
@@ -80,5 +90,12 @@ class Campaign extends Model implements AuditableContract
     public function donees() : \Illuminate\Database\Eloquent\Relations\HasManyThrough
     {
         return $this->hasManyThrough(Donee::class, Wishlist::class);
+    }
+
+    private function isJson($string)
+    {
+        json_decode($string);
+    
+        return json_last_error() === JSON_ERROR_NONE;
     }
 }

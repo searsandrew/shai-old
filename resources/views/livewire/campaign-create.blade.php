@@ -8,7 +8,7 @@
                 <x-slot name="description">{{ __('Create a new Campaign.') }}</x-slot>
             </x-jet-section-title>
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form wire:submit.prevent="saveCampaign">
+                <form wire:submit="saveCampaign">
                     <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-4">
@@ -33,24 +33,26 @@
                                     <x-jet-input-error for="ended" class="mt-2" />
                                 </div>
                             </div>
-                            <div class="col-span-6 sm:col-span-4 grid grid-cols-3 gap-6">
+                            <div class="col-span-6 sm:col-span-4 grid grid-cols-3 gap-x-6">
+                                <h6 class="col-span-3">Campaign Graphics</h6>
                                 <div class="col-span-3 sm:col-span-1">
-                                    <x-jet-label for="logo" value="{{ __('Campaign Logo') }}" />
+                                    <x-jet-label for="logo" value="{{ __('Logo') }}" />
                                     <x-jet-input id="logo" type="file" class="mt-1 block w-full" wire:model.defer="logo" autocomplete="logo" />
                                     <x-jet-input-error for="logo" class="mt-2" />
                                 </div>
                                 <div class="col-span-3 sm:col-span-1">
-                                    <x-jet-label for="background" value="{{ __('Campaign Background Image') }}" />
+                                    <x-jet-label for="background" value="{{ __('Background Image') }}" />
                                     <x-jet-input id="background" type="file" class="mt-1 block w-full" wire:model.defer="background" autocomplete="background" />
                                     <x-jet-input-error for="background" class="mt-2" />
                                 </div>
                                 <div class="col-span-3 sm:col-span-1">
-                                    <x-jet-label for="icon" value="{{ __('Campaign Icon') }}" />
+                                    <x-jet-label for="icon" value="{{ __('Icon') }}" />
                                     <x-jet-input id="icon" type="file" class="mt-1 block w-full" wire:model.defer="icon" autocomplete="icon" />
                                     <x-jet-input-error for="icon" class="mt-2" />
                                 </div>
                             </div>
-                            <div class="col-span-6 sm:col-span-4 grid grid-cols-3 gap-6">
+                            <div class="col-span-6 sm:col-span-4 grid grid-cols-3 gap-x-6">
+                                <h6 class="col-span-3">Campaign Options</h6>
                                 <div class="col-span-3 sm:col-span-1">
                                     <x-jet-label for="family" value="{{ __('Use families?') }}" />
                                     <select id="family" class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" wire:model.defer="family" autocomplete="family">

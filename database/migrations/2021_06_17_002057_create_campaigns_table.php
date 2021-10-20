@@ -18,7 +18,12 @@ class CreateCampaignsTable extends Migration
             $table->string('slug')->unique();
             $table->string('name');
             $table->text('description');
-            $table->json('design');
+            $table->string('logo');
+            $table->string('background');
+            $table->string('icon');
+            $table->boolean('family');
+            $table->boolean('image');
+            $table->boolean('private');
             $table->date('started_at');
             $table->date('ended_at');
             $table->timestamps();

@@ -27,7 +27,12 @@ class CampaignFactory extends Factory
         return [
             'name' => $name,
             'description' => $this->faker->text(),
-            'design' => '{"image":false,"family":"true","private":"false"}',
+            'logo' => '',
+            'background' => '',
+            'icon' => '',
+            'family' => true,
+            'image' => false,
+            'private' => false,
             'started_at' => $this->faker->date(),
             'ended_at' => $this->faker->date(),
             'slug' => Str::slug($name . '-' . Str::random(8), '-'),
