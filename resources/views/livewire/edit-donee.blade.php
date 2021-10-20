@@ -23,10 +23,15 @@
                 <form wire:submit.prevent="saveDonee">
                     <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                         <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6 sm:col-span-4">
-                                <x-jet-label for="name" value="{{ __('Name') }}" />
-                                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model="donee.name" autocomplete="name" />
-                                <x-jet-input-error for="name" class="mt-2" />
+                            <div class="col-span-3 sm:col-span-2">
+                                <x-jet-label for="firstname" value="{{ __('First Name') }}" />
+                                <x-jet-input id="firstname" type="text" class="mt-1 block w-full" wire:model="donee.firstname" autocomplete="firstname" />
+                                <x-jet-input-error for="firstname" class="mt-2" />
+                            </div>
+                            <div class="col-span-3 sm:col-span-2">
+                                <x-jet-label for="lastname" value="{{ __('Last Name') }}" />
+                                <x-jet-input id="lastname" type="text" class="mt-1 block w-full" wire:model="donee.lastname" autocomplete="lastname" />
+                                <x-jet-input-error for="lastname" class="mt-2" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-4">

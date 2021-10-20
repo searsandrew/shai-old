@@ -18,7 +18,7 @@
                 <tbody>
                     @foreach($campaign->wishlists as $wishlist)
                         <tr>
-                            <td>{{ $wishlist->donee->firstname }} {{ $wishlist->donee->family->name }}</td>
+                            <td><x-name :wishlist="$wishlist" /></td>
                             <td class="text-center">
                                 @if($wishlist->status == 'selected' || $wishlist->status == 'completed')
                                     {{ $wishlist->user->name }}

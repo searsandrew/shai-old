@@ -17,7 +17,7 @@
         <div class="col-span-2 items-baseline mt-4 mb-6 grid grid-cols-1">
             @foreach($wishlists as $donee)
                 <div class="grid grid-cols-2 gap-x-4 mb-4">
-                    <div class="font-semibold">{{ $donee['donee']['firstname'] }}</div>
+                    <div class="font-semibold"><x-name :wishlist="$donee" /></div>
                     <div class="text-right">{{ __('Age') }} {{ $donee['donee']['age'] }} <x-gender-icon :gender="$donee['donee']['gender']" /></div>
                     <div class="col-span-2 leading-snug text-sm text-gray-600">
                         {{ $donee['wishlist'] }}

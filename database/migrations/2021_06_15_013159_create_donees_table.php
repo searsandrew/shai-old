@@ -23,6 +23,7 @@ class CreateDoneesTable extends Migration
             $table->text('description');
             $table->integer('age')->unsigned();
             $table->enum('gender', ['male', 'female', 'transgender', 'undeclared']);
+            $table->boolean('privacy')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -13,7 +13,8 @@ class EditDonee extends Component
     public $wishlists;
 
     protected $rules = [
-        'donee.name' => 'required|string|min:2',
+        'donee.firstname' => 'required|string|min:2',
+        'donee.lastname' => 'required|string',
         'donee.description' => 'required|string|max:500',
         'donee.age' => 'required|integer',
         'donee.gender' => 'required',
