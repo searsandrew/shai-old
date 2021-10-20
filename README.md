@@ -7,10 +7,13 @@
 **License**
 Shai is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-**Packages**
+**Framework**
 * laravel/framework: ^8.40
+
+**Packages**
 * laravel/jetstream: ^2.3
 * livewire/livewire: ^2.0
+* lorisleiva/laravel-actions: ^2.1
 * spatie/laravel-tags: ^3.1
 * owen-it/laravel-auditing: ^12.0
 

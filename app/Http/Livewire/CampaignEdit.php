@@ -7,12 +7,20 @@ use App\Models\Campaign;
 
 class CampaignEdit extends Component
 {
-    public $campaigns;
+    public Campaign $campaign;
 
-    public function mount()
-    {
-        $this->campaigns = Campaign::all();
-    }
+    protected $rules = [
+        'campaign.name' => 'required|string',
+        'campaign.description' => 'required|string',
+        'campaign.started_at' => 'required|date:Y-m-d',
+        'campaign.ended_at' => 'required|date:Y-m-d',
+        'campaign.icon' => 'string',
+        'campaign.logo' => 'string',
+        'campaign.background' => 'string', // 2MB Max
+        'campaign.family' => 'required',
+        'campaign.private' => 'required',
+        'campaign.image' => 'required',
+    ];
 
     public function render()
     {

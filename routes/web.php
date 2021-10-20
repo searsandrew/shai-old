@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\PrintLabels;
 use App\Models\Campaign;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoneeController;
@@ -7,6 +8,7 @@ use App\Http\Livewire\CreateDonee;
 use App\Http\Livewire\EditDonee;
 use App\Http\Livewire\FamilyCreate;
 use App\Http\Livewire\FamilyEdit;
+use App\Http\Livewire\CampaignIndex;
 use App\Http\Livewire\CampaignCreate;
 use App\Http\Livewire\CampaignEdit;
 use App\Http\Livewire\CampaignShow;
@@ -63,6 +65,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/campaign/create', CampaignCreate::class)->name('campaign.create');
     Route::get('/campaign/{campaign}/edit', CampaignEdit::class)->name('campaign.edit');
     Route::get('/campaign/{campaign}', CampaignShow::class)->name('campaign.show');
+    Route::post('/campaign/{campaign}/print', PrintLabels::class)->name('campaign.print');
 
     Route::resource('admin', AdminController::class);
 });

@@ -12,7 +12,7 @@
             {{ __('Manage Donee\'s') }}
         </x-jet-nav-link>
 
-        <x-jet-nav-link href="{{ route('campaign.create') }}" :active="request()->routeIs('campaign.create')">
+        <x-jet-nav-link href="{{ route('campaign.index') }}" :active="request()->routeIs('campaign.index')">
             {{ __('Manage Campaign\'s') }}
         </x-jet-nav-link>
     </div>
