@@ -33,7 +33,7 @@ class DoneeSelected extends Mailable
 
     public function getWishlists()
     {
-        if($this->campaign->design->family == 'true')
+        if($this->campaign->family == 'true')
         {
             return $this->user->familyWishlistsByCampaign($this->campaign->id);
         }

@@ -6,13 +6,13 @@
                     <h3 class="w-full flex-none font-semibold">{{ $campaign->name }}</h3>
                     <p class="w-full flex-none text-gray-700 text-xs italic mb-2">{{ $campaign->description }}</p>
                     <div class="grid grid-flow-row grid-cols-2 gap-4 mb-5 pb-8 border-b border-gray-300">
-                        @if($campaign->design->family == "true")
+                        @if($campaign->family == "true")
                             @foreach($campaign->familyWishlists() as $wishlist)
-                                <livewire:family-card :wishlist="$wishlist" :image="$campaign->design->image" />
+                                <livewire:family-card :wishlist="$wishlist" :image="$campaign->image" />
                             @endforeach
                         @else
                             @foreach($campaign->wishlists as $wishlist)
-                                <livewire:donee-card :wishlist="$wishlist" :image="$campaign->design->image" />
+                                <livewire:donee-card :wishlist="$wishlist" :image="$campaign->image" />
                             @endforeach
                         @endif
                     </div>

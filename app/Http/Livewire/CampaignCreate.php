@@ -39,14 +39,12 @@ class CampaignCreate extends Component
             'description' => $this->description,
             'started_at' => $this->started,
             'ended_at' => $this->ended,
-            'design' => json_encode([
-                'icon' => 'campaigns/' . $imageSlug . '-icon.png',
-                'logo' => 'campaigns/' . $imageSlug . '-logo.png',
-                'background' => 'campaigns/' . $imageSlug . '-background.png',
-                'family' => $this->family,
-                'private' => $this->private,
-                'image' => $this->image,
-            ]),
+            'icon' => 'campaigns/' . $imageSlug . '-icon.png',
+            'logo' => 'campaigns/' . $imageSlug . '-logo.png',
+            'background' => 'campaigns/' . $imageSlug . '-background.png',
+            'family' => $this->family,
+            'private' => $this->private,
+            'image' => $this->image,
         ]);
 
         $this->background->store('background');

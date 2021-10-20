@@ -18,7 +18,7 @@
                     <p class="w-full flex-none text-gray-700 text-xs italic mb-2">{{ $wishlists->first()->campaign->description }}</p>
                     <div class="flex flex-col w-full md:flex-row space-x-4 mb-5 pb-8 border-b border-gray-300">
                         @foreach($wishlists as $donee)
-                            <livewire:donee-card :wishlist="$donee" :image="$wishlists->first()->campaign->design->image" />
+                            <livewire:donee-card :wishlist="$donee" :image="$wishlists->first()->campaign->image" />
                         @endforeach
                     </div>
                 @endforeach

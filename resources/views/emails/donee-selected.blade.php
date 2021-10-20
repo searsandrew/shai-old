@@ -11,7 +11,7 @@
 
 <h3>{{ __('Donee Information') }}</h3>
 <dl>
-    @if($campaign->design->family == 'true')
+    @if($campaign->family == 'true')
         @foreach($wishlists as $family)
             @foreach($family as $wishlist)
                 <dt>{{ $wishlist->donee->firstname }} <em>[Age {{ $wishlist->donee->age }}, {{ucfirst( $wishlist->donee->gender )}}]</em></dt>

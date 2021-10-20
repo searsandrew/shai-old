@@ -16,7 +16,7 @@ class Campaign extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, Auditable;
 
-    public $fillable = ['slug', 'name', 'description', 'design', 'started_at', 'ended_at'];
+    public $fillable = ['slug', 'name', 'description', 'logo', 'started_at', 'ended_at'];
 
     /**
      * Set the route key name to slug
@@ -26,24 +26,6 @@ class Campaign extends Model implements AuditableContract
     public function getRouteKeyName() : string
     {
         return 'slug';
-    }
-
-    /**
-     * Accessor to decode Campaign design JSON
-     */
-    public function getDesignAttribute($value)
-    {
-        if($this->isJson($value))
-        {
-            return json_decode($value);
-        }
-
-        return $value;
-    }
-
-    public function setDesignAttribute($value)
-    {
-        $this->attributes['design'] = json_encode($value);
     }
 
     /**

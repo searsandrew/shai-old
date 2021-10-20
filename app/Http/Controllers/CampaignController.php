@@ -41,7 +41,12 @@ class CampaignController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'design' => 'required',
+            'logo' => 'required',
+            'background' => 'required',
+            'icon' => 'required',
+            'family' => 'required',
+            'image' => 'required',
+            'private' => 'required',
             'started_at' => 'required',
             'ended_at' => 'required',
         ]);

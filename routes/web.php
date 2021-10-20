@@ -31,17 +31,15 @@ Route::get('/', function () {
         $current = (object) [
             'name' => config('app.name'),
             'description' => 'There is no active campaign at this time.',
-            'design' => (object) [
-                'logo' => '',
-                'background' => '',
-                'icon' => '',
-            ]
+            'logo' => '',
+            'background' => '',
+            'icon' => '',
         ];
     }
     
-    if(Storage::url($current->design->background) != '')
+    if(Storage::url($current->background) != '')
     {
-        $background = Storage::url($current->design->background);
+        $background = Storage::url($current->background);
     }
 
     return view('welcome', compact('current'));
