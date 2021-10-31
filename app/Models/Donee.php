@@ -17,7 +17,7 @@ class Donee extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, HasTags, Auditable;
 
-    public $fillable = ['slug', 'firstname', 'description', 'age', 'gender'];
+    public $fillable = ['slug', 'firstname', 'lastname', 'description', 'age', 'gender'];
 
     /**
      * Set the route key name to slug

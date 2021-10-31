@@ -22,6 +22,15 @@ class CampaignEdit extends Component
         'campaign.image' => 'required',
     ];
 
+    public function saveCampaign()
+    {
+        $this->validate();
+        
+        $this->campaign->update();
+
+        $this->emit('campaign_saved');
+    }
+
     public function render()
     {
         return view('livewire.campaign-edit');

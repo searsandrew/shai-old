@@ -13,6 +13,7 @@ class CampaignShow extends Component
 
     public Campaign $campaign;
     public $imageSlug;
+    public $showImport = false;
 
     protected $rules = [
         'campaign.name' => 'required|string',

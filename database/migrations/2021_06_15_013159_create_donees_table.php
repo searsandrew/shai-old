@@ -21,7 +21,7 @@ class CreateDoneesTable extends Migration
             $table->string('lastname');
             $table->foreign('family_id')->references('id')->on('families');
             $table->text('description');
-            $table->integer('age')->unsigned();
+            $table->string('age');
             $table->enum('gender', ['male', 'female', 'transgender', 'undeclared']);
             $table->boolean('privacy')->default(true);
             $table->timestamps();

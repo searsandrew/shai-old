@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\ImportCSV;
 use App\Actions\PrintLabels;
 use App\Actions\UpdateWishlistFromQR;
 use App\Models\Campaign;
@@ -67,6 +68,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/campaign/{campaign}/edit', CampaignEdit::class)->name('campaign.edit');
     Route::get('/campaign/{campaign}', CampaignShow::class)->name('campaign.show');
     Route::get('/campaign/{campaign}/print', PrintLabels::class)->name('campaign.print');
+    Route::post('/campaign/{campaign}/import', ImportCSV::class)->name('campaign.import');
 
     Route::resource('admin', AdminController::class);
 
