@@ -30,7 +30,7 @@ class ImportCSV
                 $donee = $family->donees()->create([
                     'slug' => $getData[0],
                     'firstname' => $getData[2],
-                    'lastname' => $getData[2],
+                    'lastname' => ' ',
                     'description' => $getData[5],
                     'age' => $getData[3],
                     'gender' => $getData[4]
