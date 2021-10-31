@@ -40,8 +40,8 @@ class ImportCSV
                     'slug' => $getData[0] . '-wishlist', 
                     'wishlist' => $getData[6]
                 ]);
-                $donee->wishlists()->attach($wishlist);
-                $campaign->wishlists()->attach($wishlist);
+                $wishlist->donee()->associate($donee);
+                $wishlist->campaign()->associate($campaign);
                 $wishlist->save();
             }
             $i++;
