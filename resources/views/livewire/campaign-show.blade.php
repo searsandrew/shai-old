@@ -14,17 +14,13 @@
                         @can('collect_responses')
                             <a href="{{ route('campaign.print', $campaign) }}" class="btn-muted text-center">{{ __('QR Labels') }}</a>
                         @endcan
-                        @can('campaign_edit')
-                            <button class="btn-muted text-center" wire:click="$toggle('showImport')">{{ __('Import CSV') }}</button>
-                        @endcan
+                        <button class="btn-muted text-center" wire:click="$toggle('showImport')">{{ __('Import CSV') }}</button>
                     </div>
-                    @can('campaign_edit')
                         <form class="mt-6 @if(!$showImport) hidden @endif" method="POST" enctype="multipart/form-data" action="{{ route('campaign.import', $campaign) }}">
                             @csrf
                             <input type="file" name="file" />
                             <button type="submit">Submit</button>
                         </form>
-                    @endcan
                 </x-slot>
             </x-jet-section-title>
             <livewire:recieve-donations :campaign="$campaign" />
