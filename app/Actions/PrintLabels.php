@@ -35,7 +35,7 @@ class PrintLabels extends FPDF
             $this->Text($cords[0] + 3, $cords[1] + 47, $wishlist->campaign->name);
             $this->SetTextColor(88, 88, 88);
             $this->SetXY($cords[0] + 3, $cords[1] + 19);
-            $this->MultiCell(47, 3, $wishlist->wishlist, 0, 'L');
+            $this->MultiCell(47, 3, $wishlist->campaign->description . ' - ' .$wishlist->wishlist, 0, 'L');
 
             if($i == 9)
             {
