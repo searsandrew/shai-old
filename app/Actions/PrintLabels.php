@@ -31,7 +31,7 @@ class PrintLabels extends FPDF
             $this->Text($cords[0] + 3, $cords[1] + 10, $this->buildName($wishlist));
             $this->SetFontSize(8);
             $this->SetTextColor(33, 33, 33);
-            $this->Text($cords[0] + 3, $cords[1] + 17, Str::ucfirst($wishlist->donee->gender) . ' | Age: ' . $wishlist->donee->age . ' | Clothing Size');
+            $this->Text($cords[0] + 3, $cords[1] + 17, $wishlist->donee->slug . ' | ' . Str::ucfirst($wishlist->donee->gender) . ' | Age: ' . $wishlist->donee->age);
             $this->Text($cords[0] + 3, $cords[1] + 47, $wishlist->campaign->name);
             $this->SetTextColor(88, 88, 88);
             $this->SetXY($cords[0] + 3, $cords[1] + 19);
