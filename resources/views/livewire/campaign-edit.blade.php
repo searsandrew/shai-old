@@ -37,18 +37,26 @@
                                 <h6 class="col-span-3">Campaign Graphics</h6>
                                 <div class="col-span-3 sm:col-span-1">
                                     <x-jet-label for="logo" value="{{ __('Logo') }}" />
-                                    <x-jet-input id="logo" type="text" class="mt-1 block w-full" wire:model.defer="campaign.logo" autocomplete="logo" />
-                                    <x-jet-input-error for="logo" class="mt-2" />
+                                    @if($replaceLogo)
+                                        <x-jet-input id="logo" type="file" class="mt-1 block w-full" wire:model.defer="logo" autocomplete="logo" />
+                                        <x-jet-input-error for="logo" class="mt-2" />
+                                    @else
+                                        <img src="{{ Storage::url($campaign->logo) }}" />
+                                    @endif
                                 </div>
                                 <div class="col-span-3 sm:col-span-1">
                                     <x-jet-label for="background" value="{{ __('Background Image') }}" />
-                                    <x-jet-input id="background" type="text" class="mt-1 block w-full" wire:model.defer="campaign.background" autocomplete="background" />
-                                    <x-jet-input-error for="campaign.background" class="mt-2" />
+                                    <x-jet-input id="background" type="file" class="mt-1 block w-full" wire:model.defer="background" autocomplete="background" />
+                                    <x-jet-input-error for="background" class="mt-2" />
                                 </div>
                                 <div class="col-span-3 sm:col-span-1">
                                     <x-jet-label for="icon" value="{{ __('Icon') }}" />
-                                    <x-jet-input id="icon" type="text" class="mt-1 block w-full" wire:model.defer="campaign.icon" autocomplete="icon" />
-                                    <x-jet-input-error for="campaign.icon" class="mt-2" />
+                                    @if($replaceLogo)
+                                        <x-jet-input id="icon" type="file" class="mt-1 block w-full" wire:model.defer="icon" autocomplete="icon" />
+                                        <x-jet-input-error for="icon" class="mt-2" />
+                                    @else
+                                        <img src="{{ Storage::url($campaign->icon) }}" />
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-span-6 sm:col-span-4 grid grid-cols-3 gap-x-6">
