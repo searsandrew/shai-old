@@ -33,8 +33,16 @@
             </div>
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <img class="img-fluid" src="{{ Storage::url($current->logo) }}" />
+
+                <div class="p-4 flex flex-shrink">
+                    <div class="rounded-2xl flex flex-shrink shadow-md sm:flex-row flex-col">
+                        <div class="flex flex-1">
+                            <img class="object-cover overflow-hidden rounded-tl-2xl rounded-bl-2xl" src="{{ Storage::url($current->logo) }}" alt="Camapign Logo" />
+                        </div>
+                        <div class="flex flex-1 flex-col justify-evenly p-3.5 min-w-0">
+
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
