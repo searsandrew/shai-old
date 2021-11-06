@@ -35,6 +35,6 @@
 </dl>
 
 <h3>{{ __('Donation Instructions') }}</h3>
-{{ $campaign->description }}
+{{ $campaign->instruction }}
 
 @endcomponent
