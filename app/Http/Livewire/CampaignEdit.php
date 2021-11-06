@@ -27,31 +27,39 @@ class CampaignEdit extends Component
 
     public function saveCampaign()
     {
-        $this->validate([
-            'icon' => 'image|mimes:png|max:1024',
-            'logo' => 'image|mimes:png|max:1024',
-            'background' => 'image|mimes:png|max:2048', // 2MB Max
-        ]);
+        $this->validate();
 
         $this->campaign->update();
 
         $imageSlug = Str::slug($this->campaign->name . '-' . Str::random(24), '-');
         if($this->icon)
         {
+            $this->validate([
+                'icon' => 'image|mimes:png|max:1024'
+            ]);
             $this->icon->storeAs('public/campaigns', $imageSlug . '-icon.png');
             $this->campaign->icon = 'public/campaigns/' . $imageSlug . '-icon.png';
+            $this->replaceIcon = false;
         }
 
         if($this->logo)
         {
+            $this->validate([
+                'logo' => 'image|mimes:png|max:1024'
+            ]);
             $this->logo->storeAs('public/campaigns', $imageSlug . '-logo.png');
             $this->campaign->logo = 'public/campaigns/' . $imageSlug . '-logo.png';
+            $this->replaceLogo = false;
         }
 
         if($this->background)
         {
+            $this->validate([
+                'background' => 'image|mimes:png|max:2048', // 2MB Max
+            ]);
             $this->background->storeAs('public/campaigns', $imageSlug . '-background.png');
             $this->campaign->background = 'public/campaigns/' . $imageSlug . '-background.png';
+            $this->replaceBackground = false;
         }
         
         $this->campaign->save();

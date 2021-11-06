@@ -8,6 +8,7 @@
                 <x-slot name="description">{{ $campaign->description }}</x-slot>
             </x-jet-section-title>
             <div class="mt-5 md:mt-0 md:col-span-2">
+                {{ $errors }}
                 <form wire:submit.prevent="saveCampaign">
                     <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                         <div class="grid grid-cols-6 gap-6">
@@ -40,22 +41,32 @@
                                     @if($replaceLogo)
                                         <x-jet-input id="logo" type="file" class="mt-1 block w-full" wire:model.defer="logo" autocomplete="logo" />
                                         <x-jet-input-error for="logo" class="mt-2" />
+                                        <button type="button" wire:click="$toggle('replaceLogo')">Cancel</button>
                                     @else
                                         <img src="{{ Storage::url($campaign->logo) }}" />
+                                        <button type="button" wire:click="$toggle('replaceLogo')">Change</button>
                                     @endif
                                 </div>
                                 <div class="col-span-3 sm:col-span-1">
                                     <x-jet-label for="background" value="{{ __('Background Image') }}" />
-                                    <x-jet-input id="background" type="file" class="mt-1 block w-full" wire:model.defer="background" autocomplete="background" />
-                                    <x-jet-input-error for="background" class="mt-2" />
+                                    @if($replaceBackground)
+                                        <x-jet-input id="background" type="file" class="mt-1 block w-full" wire:model.defer="background" autocomplete="background" />
+                                        <x-jet-input-error for="background" class="mt-2" />
+                                        <button type="button" wire:click="$toggle('replaceBackground')">Cancel</button>
+                                    @else
+                                        <img src="{{ Storage::url($campaign->background) }}" />
+                                        <button type="button" wire:click="$toggle('replaceBackground')">Change</button>
+                                    @endif
                                 </div>
                                 <div class="col-span-3 sm:col-span-1">
                                     <x-jet-label for="icon" value="{{ __('Icon') }}" />
-                                    @if($replaceLogo)
+                                    @if($replaceIcon)
                                         <x-jet-input id="icon" type="file" class="mt-1 block w-full" wire:model.defer="icon" autocomplete="icon" />
                                         <x-jet-input-error for="icon" class="mt-2" />
+                                        <button type="button" wire:click="$toggle('replaceIcon')">Cancel</button>
                                     @else
                                         <img src="{{ Storage::url($campaign->icon) }}" />
+                                        <button type="button" wire:click="$toggle('replaceIcon')">Change</button>
                                     @endif
                                 </div>
                             </div>
