@@ -1,5 +1,5 @@
 @component('mail::message')
-<h2>{{ __('Thank you for choosing to donate!')}}</h2>
+<h2>{{ __('Thank you for choosing to donate and bless each child and family!')}}</h2>
 
 {{ __('Your decision to donate to those in need is an incredibly selfless act, and will serve to enrich the lives of others. To complete your donation please refer to the information below, or log in to your account.') }}
 

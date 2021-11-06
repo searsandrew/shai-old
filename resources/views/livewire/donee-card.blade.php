@@ -70,10 +70,10 @@
         </x-slot>
 
         <x-slot name="content">
-            {{ $wishlist->donee->description }}
+            {{ $wishlist->campaign->description }}
             <strong class="flex flex-full text-gray-900 mt-4">{{ __('Donation Instructions:') }}</strong>
             <small class="flex flex-full text-gray-600">
-                {{ $wishlist->campaign->description }}
+                {!! nl2br($wishlist->campaign->instruction) !!}
             </small>
         </x-slot>
 

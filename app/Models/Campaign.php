@@ -16,7 +16,7 @@ class Campaign extends Model implements AuditableContract
 {
     use HasFactory, SoftDeletes, Auditable;
 
-    public $fillable = ['slug', 'name', 'description', 'logo', 'started_at', 'ended_at'];
+    public $fillable = ['slug', 'name', 'description', 'instruction', 'logo', 'started_at', 'ended_at'];
 
     /**
      * Set the route key name to slug

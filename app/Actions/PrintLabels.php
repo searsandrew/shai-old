@@ -27,7 +27,7 @@ class PrintLabels extends FPDF
             $this->SetTextColor(0, 0, 0);
             $this->SetFont('Arial', '', 18);
             $this->buildQR(route('wishlist.qr', $wishlist->slug), 'H');
-            $this->displayFPDF($this, $cords[0] + 50, $cords[1], 51, [255, 255, 255], [0, 0, 0]);
+            $this->displayFPDF($this, $cords[0] + 70, $cords[1], 31, [255, 255, 255], [0, 0, 0]);
             $this->Text($cords[0] + 3, $cords[1] + 10, $this->buildName($wishlist));
             $this->SetFontSize(8);
             $this->SetTextColor(33, 33, 33);

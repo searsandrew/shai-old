@@ -7,7 +7,7 @@
     <form class="grid grid-cols-2 p-6">
         <div class="col-span-2 grid grid-cols-4">
             <h1 class="col-span-3 sm:col-span-2 text-xl font-semibold">
-                {{  substr($family->name, 0, 1)  }} {{  __('Family') }}
+                {{  __('Family') }} {{ $family->slug }}
                 <x-jet-action-message on="sent">
                     {{ __('Donation Email Resent.') }}
                 </x-jet-action-message>
@@ -17,7 +17,7 @@
         <div class="col-span-2 items-baseline mt-4 mb-6 grid grid-cols-1">
             @foreach($wishlists as $donee)
                 <div class="grid grid-cols-2 gap-x-4 mb-4">
-                    <div class="font-semibold"><x-name :wishlist="$donee" /></div>
+                    <div class="font-semibold">{{ $donee['donee']['firstname'] }}</div>
                     <div class="text-right">{{ __('Age') }} {{ $donee['donee']['age'] }} <x-gender-icon :gender="$donee['donee']['gender']" /></div>
                     <div class="col-span-2 leading-snug text-sm text-gray-600">
                         {{ $donee['wishlist'] }}
@@ -96,13 +96,14 @@
             @foreach($wishlists as $donee)
                 <ul class="mb-4">
                     <li class="text-gray-600">
+                        <strong>{{ $donee['donee']['firstname'] }}</strong><br/>
                         {{ $donee['wishlist'] }}
                     </li>
                 </ul>
             @endforeach
             <strong class="flex flex-full text-gray-900 mt-4">{{ __('Donation Instructions:') }}</strong>
             <small class="flex flex-full text-gray-600">
-                {{ $wishlist->campaign->description }}
+                {!! nl2br($wishlist->campaign->instruction) !!}
             </small>
         </x-slot>
 
