@@ -29,6 +29,11 @@ class Donee extends Model implements AuditableContract
         return 'slug';
     }
 
+    public function getFirstnameAttribute($value)
+    {
+        return sprintf('[%s] %s', $this->slug, $value);
+    }
+
     /**
      * A donee belongs to many campaigns
      * 
