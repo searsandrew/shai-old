@@ -1,9 +1,11 @@
 <?php
 
+use App\Actions\CheckinWishlist;
 use App\Actions\ImportCSV;
 use App\Actions\PrintLabels;
 use App\Actions\UpdateWishlistFromQR;
 use App\Models\Campaign;
+use App\Models\Wishlist;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoneeController;
 use App\Http\Livewire\CreateDonee;
@@ -73,6 +75,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('admin', AdminController::class);
 
     Route::get('/wishlist/{wishlist}/qr', UpdateWishlistFromQR::class)->name('wishlist.qr');
+    Route::get('/wishlist/{wishlist}/collect', function(Wishlist $wishlist) {
+        return view('donee.collect', compact('wishlist'));
+    })->name('wishlist.collect');
+    Route::post('/wishlist/{wishlist}/process', CheckinWishlist::class)->name('wishlist.process');
 });
 
 Route::get('/mailable', function () {

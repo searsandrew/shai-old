@@ -5,9 +5,8 @@
                 <tr>
                     <th width="20%">Donee Name</th>
                     <th width="20%">Donor Name</th>
-                    <th width="40%">Wishlist</th>
+                    <th width="40%" class="hidden sm:block">Wishlist</th>
                     <th width="15%">Status</th>
-                    <th width="5%">Recieve</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,16 +15,13 @@
                         <td><x-name :wishlist="$wishlist" /></td>
                         <td class="text-center">
                             @if($wishlist->status == 'selected' || $wishlist->status == 'completed')
-                                {{ $wishlist->user->name }}
+                                <a href="{{ route('wishlist.collect', $wishlist) }}" class="text-purple-600 no-underline hover:underline hover:text-purple-400">{{ $wishlist->user->name }}</a>
                             @else
                                 Not Selected
                             @endif
                         </td>
-                        <td>{{ $wishlist->wishlist }}</td>
+                        <td class="hidden sm:block">{{ $wishlist->wishlist }}</td>
                         <td class="text-center">{{ ucfirst($wishlist->status) }}</td>
-                        <td class="text-center">
-                            <button class="flex items-center justify-center rounded-md bg-black text-white p-1" type="button" wire:click="completeWishlist({{ $wishlist }})"><i class="far fa-check-circle"></i></button>
-                        </td>
                     </tr>
                 @endforeach
             </tbody>
