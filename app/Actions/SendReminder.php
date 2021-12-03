@@ -3,6 +3,7 @@
 namespace App\Actions;
 
 use App\Mail\DonorReminder;
+use App\Models\Campaign;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Mail;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -17,9 +18,10 @@ class SendReminder
         Mail::to('searsandrew@gmail.com')->send(new DonorReminder($wishlist));
     }
 
-    public function asController()
+    public function asController(Campaign $campaign)
     {
-        $incomplete = Wishlist::where('status', 'selected')->get();
+        $incomplete = $campaign->wishlists->where('status', 'selected')->get();
+        dd($incomplete);
         if($incomplete->count() > 0)
         {
             foreach($incomplete as $remind)

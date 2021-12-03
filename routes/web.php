@@ -4,6 +4,7 @@ use App\Actions\CheckinWishlist;
 use App\Actions\ImportCSV;
 use App\Actions\PrintLabels;
 use App\Actions\UpdateWishlistFromQR;
+use App\Actions\CampaignReminder;
 use App\Models\Campaign;
 use App\Models\Wishlist;
 use App\Http\Controllers\AdminController;
@@ -71,6 +72,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/campaign/{campaign}', CampaignShow::class)->name('campaign.show');
     Route::get('/campaign/{campaign}/print', PrintLabels::class)->name('campaign.print');
     Route::post('/campaign/{campaign}/import', ImportCSV::class)->name('campaign.import');
+    Route::post('/campaign/{campaign}/reminder', SendReminder::class)->name('campaign.reminder');
 
     Route::resource('admin', AdminController::class);
 
