@@ -4,7 +4,7 @@ use App\Actions\CheckinWishlist;
 use App\Actions\ImportCSV;
 use App\Actions\PrintLabels;
 use App\Actions\UpdateWishlistFromQR;
-use App\Actions\CampaignReminder;
+use App\Actions\SendReminder;
 use App\Models\Campaign;
 use App\Models\Wishlist;
 use App\Http\Controllers\AdminController;
