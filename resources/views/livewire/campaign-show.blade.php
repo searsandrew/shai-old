@@ -18,7 +18,7 @@
                             <button class="btn-muted text-center" wire:click="$toggle('showImport')">{{ __('Import CSV') }}</button>
                             <form class="mt-6" method="POST" action="{{ route('campaign.reminder', $campaign) }}">
                                 @csrf
-                                <button type="submit">{{ __('Send Reminder') }}</button>
+                                <button class="btn-muted text-center" type="submit">{{ __('Send Reminder') }}</button>
                             </form>
                         @endcan
                     </div>
@@ -26,7 +26,7 @@
                         <form class="mt-6 @if(!$showImport) hidden @endif" method="POST" enctype="multipart/form-data" action="{{ route('campaign.import', $campaign) }}">
                             @csrf
                             <input type="file" name="file" />
-                            <button type="submit">Submit</button>
+                            <button type="submit"  class="btn-muted text-center">Submit</button>
                         </form>
                     @endcan
                 </x-slot>
