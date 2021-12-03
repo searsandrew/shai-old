@@ -2,7 +2,7 @@
 
 <h2>{{ __('Thank you for choosing to pray for and bless one or more children and their families for Christmas through Project Greatest Gift!')}}</h2>
 
-{{ __('You are the hands and feet of Jesus.  May each gift tell of God's love and draw these children and families to Jesus as their Savior -- God's greatest gift to all!
+{{ __('You are the hands and feet of Jesus.  May each gift tell of God\'s love and draw these children and families to Jesus as their Savior -- God\'s greatest gift to all!
 Please remember that this is the final week to shop, wrap and RETURN YOUR GIFTS AND BAGS NO LATER THAN THIS SUNDAY, DECEMBER 5TH by 11-o-clock am.') }}
 
 {{ __('There will be many gifts being returned, so plan to arrive a bit earlier than normal to allow time to check them in and get to the service on time.') }}
