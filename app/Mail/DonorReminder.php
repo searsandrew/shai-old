@@ -46,6 +46,6 @@ class DonorReminder extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.donor-reminder');
+        return $this->markdown('emails.donor-reminder');
     }
 }

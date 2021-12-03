@@ -14,8 +14,7 @@ class SendReminder
 
     public function handle(Wishlist $wishlist)
     {
-        //Mail::to($wishlist->user)->send(new DonorReminder($wishlist));
-        Mail::to('searsandrew@gmail.com')->send(new DonorReminder($wishlist));
+        Mail::to($wishlist->user)->send(new DonorReminder($wishlist));
     }
 
     public function asController(Campaign $campaign)
