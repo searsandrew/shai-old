@@ -20,8 +20,7 @@ class SendReminder
 
     public function asController(Campaign $campaign)
     {
-        $incomplete = $campaign->wishlists->where('status', 'selected')->get();
-        dd($incomplete);
+        $incomplete = $campaign->wishlists()->where('status', 'selected')->get();
         if($incomplete->count() > 0)
         {
             foreach($incomplete as $remind)
