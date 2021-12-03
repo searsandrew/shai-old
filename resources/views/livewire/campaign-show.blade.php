@@ -16,6 +16,10 @@
                         @endcan
                         @can('campaign_edit')
                             <button class="btn-muted text-center" wire:click="$toggle('showImport')">{{ __('Import CSV') }}</button>
+                            <form class="mt-6" method="POST" action="{{ route('campaign.reminder', $campaign) }}">
+                                @csrf
+                                <button type="submit">{{ __('Send Reminder') }}</button>
+                            </form>
                         @endcan
                     </div>
                     @can('campaign_edit')
